@@ -3,269 +3,536 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ishaan Arekar — Software Engineer</title>
-  <meta name="description" content="Ishaan Arekar — CS student at Arizona State University working in cybersecurity and compliance, learning cloud security, and building AI and full-stack systems." />
+  <title>Ishaan Arekar — Software Engineer &amp; Security</title>
+  <meta name="description" content="Ishaan Arekar, CS student at Arizona State University ('28). Software engineer building full-stack and cloud apps on Python and AWS, and working in security: SOC 2, vulnerability management and cloud security." />
+  <meta name="theme-color" content="#0c0d0f" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">skip to content</a>
+
   <!-- ===== NAV ===== -->
   <header class="nav">
-    <a href="#top" class="logo"><span class="accent">~/</span>ishaan</a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-    <nav class="nav-links">
-      <a href="#about"><span class="num">01.</span> about</a>
-      <a href="#security"><span class="num">02.</span> security</a>
-      <a href="#experience"><span class="num">03.</span> experience</a>
-      <a href="#projects"><span class="num">04.</span> projects</a>
-      <a href="#contact"><span class="num">05.</span> contact</a>
-    </nav>
+    <div class="wrap">
+      <a href="#top" class="wordmark">ishaan arekar</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">menu</button>
+      <nav id="nav-links" class="nav-links" aria-label="Primary">
+        <a href="#about">about</a>
+        <a href="#work">work</a>
+        <a href="#experience">experience</a>
+        <a href="#notes">notes</a>
+        <a href="#contact">contact</a>
+        <!-- TODO: add resume.pdf to this folder (remove your phone number first) -->
+        <a href="resume.pdf" class="resume" target="_blank" rel="noopener">resume ↗</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="top">
+  <main id="main">
     <!-- ===== HERO ===== -->
-    <section class="hero">
-      <p class="mono accent">hi, my name is</p>
-      <h1>Ishaan Arekar.</h1>
-      <h2 class="muted">I build secure, AI-powered systems.</h2>
-      <div class="terminal">
-        <div class="terminal-bar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="terminal-title mono">zsh — ishaan@portfolio</span>
-        </div>
-        <pre class="terminal-body mono"><span class="prompt">$</span> <span id="typed"></span><span class="cursor">▋</span></pre>
-      </div>
-      <div class="hero-cta">
-        <a href="#projects" class="btn">view my work</a>
-        <a href="#contact" class="btn btn-ghost">get in touch</a>
-      </div>
+    <section id="top" class="hero wrap" aria-labelledby="hero-title">
+      <h1 id="hero-title">I build software and keep it secure.</h1>
+      <p class="sub">CS @ ASU '28 · full-stack, AWS &amp; cloud security</p>
+      <dl class="meta">
+        <dt>focus</dt>
+        <dd>software engineering · cloud (AWS) · security</dd>
+        <dt>currently</dt>
+        <dd>IT Ops, Security &amp; Compliance @ ASU</dd>
+        <dt>status</dt>
+        <dd><span class="dot" aria-hidden="true"></span>open to Summer 2027 internships (SWE, cloud, or security)</dd>
+        <dt>location</dt>
+        <dd>Tempe, AZ</dd>
+      </dl>
     </section>
 
     <!-- ===== ABOUT ===== -->
-    <section id="about" class="section reveal">
-      <h3 class="section-title"><span class="num">01.</span> about me</h3>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            I'm a computer science student at <span class="accent">Arizona State University</span>
-            (class of 2028) who likes taking projects end to end, from
-            <span class="accent">real-time computer vision</span> pipelines running on the GPU to
-            <span class="accent">authenticated, multi-user web apps</span>.
-          </p>
-          <p>
-            Right now I work in ASU's <span class="accent">IT Operations, Security &amp; Compliance</span>
-            team: supporting SOC 2 audits, triaging vulnerabilities, managing access, and writing
-            Python that automates the repetitive parts of compliance work.
-          </p>
-          <p>
-            Security is the thread through everything I build, from hashed passwords and signed tokens
-            to keeping secrets out of source control. These days I'm going deeper into
-            <span class="accent">cloud security</span>: how IAM, logging and least privilege actually
-            hold up when apps run in the cloud.
-          </p>
-          <p>
-            I'm looking for a <span class="accent">Summer 2027 software engineering internship</span>.
-          </p>
-        </div>
-        <div class="about-photo">
-          <div class="photo-placeholder mono">IA</div>
+    <section id="about" class="section fade" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">01</span><h2 id="about-title">About</h2></div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I'm a computer science student at <strong>Arizona State University</strong> (class of 2028).
+              I like taking projects end to end: a <strong>real-time computer vision pipeline</strong> that
+              counts people on the GPU and streams to a live dashboard, or a <strong>multi-user web app</strong>
+              with proper auth, structure and error handling.
+            </p>
+            <p>
+              On the security side, I work on ASU's <strong>IT Operations, Security &amp; Compliance</strong> team.
+              I support SOC 2 audits, triage vulnerabilities, manage least-privilege access, and write Python that
+              automates the repetitive parts of compliance work.
+            </p>
+            <p>
+              The two halves feed each other: shipping software teaches me what breaks, and security work
+              teaches me how to build it so it doesn't. Right now I'm going deeper on both through
+              <strong>AWS and cloud security</strong>.
+            </p>
+
+            <div class="cert" aria-label="About me, formatted as a certificate">
+              <div class="cert-head"><span>ishaan.crt</span><span>x509 · v3</span></div>
+              <dl>
+                <dt>Subject</dt>
+                <dd>CN=Ishaan Arekar, O=Arizona State University, OU=Computer Science</dd>
+                <dt>Key usage</dt>
+                <dd>build, ship, secure</dd>
+                <!-- TODO: confirm the start date (assumed Aug 2024 from class of 2028) -->
+                <dt>Valid from</dt>
+                <dd>2024-08 → 2028-05</dd>
+                <dt>Extensions</dt>
+                <dd>full-stack, computer vision, SOC 2, vuln mgmt, cloud security (learning)</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="about-photo">
+            <!-- TODO: add me.jpg to this folder, then replace the div below with:
+                 <img class="photo" src="me.jpg" alt="Ishaan Arekar" width="240" height="240" /> -->
+            <div class="photo photo-placeholder" role="img" aria-label="Photo placeholder">IA</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== SECURITY ===== -->
-    <section id="security" class="section reveal">
-      <h3 class="section-title"><span class="num">02.</span> security</h3>
-      <div class="sec-grid">
-        <article class="sec-card">
-          <p class="sec-status mono"><span class="pulse"></span> on the job</p>
-          <h4>Compliance &amp; ops</h4>
-          <ul>
-            <li>SOC 2 audit support: evidence, control ownership, auditor-ready docs</li>
-            <li>Python automation for vendor IT risk assessments (VITRA) on top of ServiceNow data</li>
-            <li>Vulnerability triage and remediation follow-up</li>
-            <li>Least-privilege access provisioning and deprovisioning</li>
-          </ul>
-        </article>
-        <article class="sec-card">
-          <p class="sec-status mono"><span class="pulse"></span> in my code</p>
-          <h4>Secure by default</h4>
-          <ul>
-            <li>bcrypt password hashing and session-based auth</li>
-            <li>Signed, expiring tokens for password reset links</li>
-            <li>Secrets in environment variables, never in the repo</li>
-            <li>Graceful, explicit error handling instead of leaking stack traces</li>
-          </ul>
-        </article>
-        <article class="sec-card">
-          <p class="sec-status mono"><span class="pulse learning"></span> learning now</p>
-          <h4>Cloud security</h4>
-          <ul>
-            <li>IAM policies, roles and least privilege in the cloud</li>
-            <li>The shared responsibility model and common misconfigurations</li>
-            <li>Logging, monitoring and detection for cloud workloads</li>
-            <li>Designing apps to be secure from the architecture up</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== EXPERIENCE & SKILLS ===== -->
-    <section id="experience" class="section reveal">
-      <h3 class="section-title"><span class="num">03.</span> experience &amp; skills</h3>
-
-      <div class="timeline">
-        <div class="job">
-          <div class="job-head">
-            <h4>Student Support Specialist <span class="accent">@ ASU IT Ops, Security &amp; Compliance</span></h4>
-            <span class="mono muted">Jan 2026 — present</span>
+    <!-- ===== TWO TRACKS ===== -->
+    <section class="section fade" aria-labelledby="tracks-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">02</span><h2 id="tracks-title">Two tracks, equal weight</h2></div>
+        <div class="tracks">
+          <div class="track">
+            <span class="tag tag-dev">software &amp; cloud</span>
+            <h3>Build</h3>
+            <p>Products that work end to end, from the data pipeline to the screen.</p>
+            <ul>
+              <li>Full-stack apps with Flask and Angular</li>
+              <li>Real-time computer vision on the GPU (OpenCV, YOLOv4, CUDA)</li>
+              <li>REST APIs and real-time data with Firebase</li>
+              <li>Cloud deployment on AWS <span class="tag tag-plan">learning</span></li>
+              <li>Clean, modular, testable code (factory pattern, blueprints)</li>
+            </ul>
           </div>
-          <ul>
-            <li>Built Python tooling that automates Vendor IT Risk Assessment (VITRA) workflows, pulling vendor and control data from ServiceNow and flagging missing docs and overdue reassessments.</li>
-            <li>Support the university's SOC 2 program by maintaining audit evidence and tracking control ownership.</li>
-            <li>Triage vulnerabilities during security audits and manage least-privilege access provisioning.</li>
-          </ul>
-        </div>
-        <div class="job">
-          <div class="job-head">
-            <h4>Instructional Assistant <span class="accent">@ ASU School of Math &amp; Stats</span></h4>
-            <span class="mono muted">Sep 2025 — Jan 2026</span>
+          <div class="track">
+            <span class="tag tag-sec">security</span>
+            <h3>Defend</h3>
+            <p>Keeping systems compliant, patched and locked down, on the job every day.</p>
+            <ul>
+              <li>SOC 2 compliance support and audit evidence</li>
+              <li>Vulnerability triage and remediation follow-up</li>
+              <li>Least-privilege access; IAM in the cloud <span class="tag tag-plan">learning</span></li>
+              <li>SOC and detection fundamentals: logging, alerting, triage <span class="tag tag-plan">learning</span></li>
+              <li>Secure-by-default code: hashed passwords, signed tokens, no secrets in repos</li>
+            </ul>
           </div>
-          <ul>
-            <li>Supported 200- and 400-level math courses through office hours and grading.</li>
-          </ul>
-        </div>
-        <div class="job">
-          <div class="job-head">
-            <h4>Product Development Intern <span class="accent">@ NSE Academy, Mumbai</span></h4>
-            <span class="mono muted">May 2025 — Aug 2025</span>
-          </div>
-          <ul>
-            <li>Built Power BI and Excel dashboards from market and program data that fed product decisions.</li>
-            <li>Prototyped educational products, scoping the technical side to user requirements.</li>
-          </ul>
-        </div>
-        <div class="job">
-          <div class="job-head">
-            <h4>Head of Prototyping <span class="accent">@ EPICS, ASU</span></h4>
-            <span class="mono muted">Jan 2025 — May 2025</span>
-          </div>
-          <ul>
-            <li>Led prototyping for a community engineering project, set timelines and delivered high-fidelity prototypes.</li>
-          </ul>
-        </div>
-        <div class="job">
-          <div class="job-head">
-            <h4>B.S. Computer Science <span class="accent">@ Arizona State University</span></h4>
-            <span class="mono muted">Expected May 2028</span>
-          </div>
-          <ul>
-            <li>GPA 4.00 · Dean's List two years running · NAMU Scholarship recipient.</li>
-            <li>Indian Students' Association: Chief of Staff (2026 — present), Treasurer (2025 — 2026).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="skills">
-        <div class="skill-group">
-          <h5 class="mono">languages</h5>
-          <ul class="tags"><li>Python</li><li>C++</li><li>Java</li><li>TypeScript</li><li>JavaScript</li><li>SQL</li><li>HTML/CSS</li></ul>
-        </div>
-        <div class="skill-group">
-          <h5 class="mono">ai &amp; vision</h5>
-          <ul class="tags"><li>OpenCV DNN</li><li>YOLOv4</li><li>NumPy</li><li>CUDA</li></ul>
-        </div>
-        <div class="skill-group">
-          <h5 class="mono">frameworks</h5>
-          <ul class="tags"><li>Flask</li><li>SQLAlchemy</li><li>Angular</li><li>PyQt5</li><li>Jinja2</li></ul>
-        </div>
-        <div class="skill-group">
-          <h5 class="mono">data &amp; infra</h5>
-          <ul class="tags"><li>Firebase</li><li>SQLite</li><li>REST APIs</li><li>Git</li><li>Power BI</li></ul>
-        </div>
-        <div class="skill-group">
-          <h5 class="mono">security</h5>
-          <ul class="tags"><li>SOC 2</li><li>Vendor risk (VITRA)</li><li>Vulnerability triage</li><li>Least privilege</li><li>Secrets management</li><li>ServiceNow</li></ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== PROJECTS ===== -->
-    <section id="projects" class="section reveal">
-      <h3 class="section-title"><span class="num">04.</span> projects</h3>
-      <div class="cards">
-        <article class="card">
-          <div class="card-top">
-            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <div class="card-links">
-              <a href="https://github.com/IshaanArekar/FitStack" target="_blank" rel="noopener" aria-label="FitStack on GitHub">gh</a>
-            </div>
-          </div>
-          <h4>FitStack</h4>
-          <p>Real-time gym occupancy tracker. YOLOv4 counts people through OpenCV's DNN module, auto-switches to the GPU when CUDA is available, and streams throttled updates to Firebase for a live Angular dashboard.</p>
-          <ul class="tech mono"><li>Python</li><li>OpenCV</li><li>YOLOv4</li><li>CUDA</li><li>Firebase</li><li>Angular</li></ul>
-        </article>
+    <!-- ===== WORK ===== -->
+    <section id="work" class="section fade" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">03</span><h2 id="work-title">Work</h2></div>
 
-        <article class="card">
-          <div class="card-top">
-            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <div class="card-links">
-              <a href="https://scantaps.web.app" target="_blank" rel="noopener" aria-label="ScanTaps live site">↗</a>
-            </div>
-          </div>
-          <h4>ScanTaps</h4>
-          <p>Privacy-first lost and found for ASU's 55,500+ person campus, built through EPICS. Tap an NFC tag or scan a QR code on a lost item and a PWA connects finder and owner over ASU sign-in, with signed URL tokens and no personal details exposed. Team of six; I was budget lead.</p>
-          <ul class="tech mono"><li>PWA</li><li>NFC</li><li>QR</li><li>Firebase</li><li>ASU SSO</li></ul>
-        </article>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip" data-filter="all" aria-pressed="true">all</button>
+          <button class="chip" data-filter="dev" aria-pressed="false">dev</button>
+          <button class="chip" data-filter="cloud" aria-pressed="false">cloud</button>
+          <button class="chip" data-filter="security" aria-pressed="false">security</button>
+        </div>
 
-        <article class="card">
-          <div class="card-top">
-            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <div class="card-links">
-              <a href="https://github.com/IshaanArekar/Python-Flask-Blog" target="_blank" rel="noopener" aria-label="Flask Blog Platform on GitHub">gh</a>
-            </div>
-          </div>
-          <h4>Flask Blog Platform</h4>
-          <p>Multi-user blogging app built on the application factory pattern with four blueprints. Full auth with bcrypt, Flask-Login sessions and signed, expiring password reset emails.</p>
-          <ul class="tech mono"><li>Flask</li><li>SQLAlchemy</li><li>Jinja2</li><li>SQLite</li><li>bcrypt</li></ul>
-        </article>
+        <ul class="work-list">
+          <!-- P-01 -->
+          <li class="work-item" data-tags="dev cloud">
+            <details>
+              <summary>
+                <span class="w-id">P-01</span>
+                <span><span class="w-title">FitStack</span><span class="w-sum">Real-time occupancy tracker running YOLOv4 on the GPU.</span></span>
+                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">Python · OpenCV · YOLOv4 · CUDA · Firebase · Angular · TypeScript</span>
+              </summary>
+              <div class="w-body">
+                <dl class="writeup">
+                  <!-- TODO: add the real space / use case FitStack was built for -->
+                  <dt>Problem</dt>
+                  <dd>Knowing how many people are in a space right now, live, instead of counting by hand or guessing.</dd>
+                  <dt>What I built</dt>
+                  <dd>A people-counting pipeline that runs YOLOv4 through OpenCV's DNN module, keeps only person detections above 0.5 confidence, and uses non-maximum suppression to turn overlapping boxes into a stable count. It detects CUDA at runtime and moves inference to the GPU when one is present, falling back to CPU otherwise, so one code path runs anywhere. A background thread pool streams counts to Firebase Realtime Database for a live Angular dashboard.</dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>Only the count goes to the cloud, not video frames, which keeps what leaves the machine to a single number. <!-- TODO: document the Firebase security rules / auth used --></dd>
+                  <dt>Outcome</dt>
+                  <dd>A live count on the dashboard with writes only on a count change or every 5 seconds, instead of every frame, so network I/O never blocks the capture loop.</dd>
+                </dl>
+                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/FitStack" target="_blank" rel="noopener">github ↗</a></p>
+              </div>
+            </details>
+          </li>
 
-        <article class="card">
-          <div class="card-top">
-            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <div class="card-links">
-              <a href="https://github.com/IshaanArekar/Python-Weather-app" target="_blank" rel="noopener" aria-label="Weather Desktop Client on GitHub">gh</a>
+          <!-- P-02 -->
+          <li class="work-item" data-tags="dev cloud security">
+            <details>
+              <summary>
+                <span class="w-id">P-02</span>
+                <span><span class="w-title">ScanTaps</span><span class="w-sum">Privacy-first lost and found for ASU, using NFC and QR tags.</span></span>
+                <span class="w-right"><span class="tag tag-both">both</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">PWA · NFC · QR · Firebase · JavaScript · EPICS team of six</span>
+              </summary>
+              <div class="w-body">
+                <dl class="writeup">
+                  <dt>Problem</dt>
+                  <dd>ASU's Tempe campus has 55,500+ people across a mile-wide campus, and lost and found ran on manual intake and record-keeping, with no verified way to claim an item.</dd>
+                  <dt>What I built</dt>
+                  <dd>As budget lead on a six-person EPICS team, I owned the project budget and hardware (NFC tags, cards and fobs). The team built a Progressive Web App: tap an NFC tag or scan a QR code on an item and a page opens that connects the finder and the owner, on any phone. <!-- TODO: add your own technical contributions to ScanTaps --></dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>Designed around privacy: signed tokens in tag URLs instead of personal data, owner sign-in through ASU credentials, finder and owner contact details hidden from each other, no personal info in logs, rate limits against spam, and an audit trail of staff actions.</dd>
+                  <dt>Outcome</dt>
+                  <dd>Stage 1 shipped: a working PWA with NFC and QR across Android, iOS and desktop, and an encrypted database designed and tested.</dd>
+                </dl>
+                <p class="w-links">
+                  <a class="link" href="https://scantaps.web.app" target="_blank" rel="noopener">live ↗</a>
+                  <a class="link" href="https://github.com/IshaanArekar/ScanTaps" target="_blank" rel="noopener">github ↗</a>
+                </p>
+              </div>
+            </details>
+          </li>
+
+          <!-- P-03 -->
+          <li class="work-item" data-tags="security dev">
+            <details>
+              <summary>
+                <span class="w-id">P-03</span>
+                <span><span class="w-title">VITRA automation</span><span class="w-sum">Python tooling for vendor IT risk assessments at ASU.</span></span>
+                <span class="w-right"><span class="tag tag-sec">sec</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">Python · ServiceNow · compliance · work project</span>
+              </summary>
+              <div class="w-body">
+                <dl class="writeup">
+                  <dt>Problem</dt>
+                  <dd>Vendor IT risk assessments were tracked by hand in spreadsheets, so missing vendor documents and overdue reassessments were easy to miss.</dd>
+                  <dt>What I built</dt>
+                  <dd>Internal Python tooling that pulls vendor and control data from ServiceNow, runs scripted checks that flag missing documentation and overdue reassessments, and generates status reports.</dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>It handles internal vendor-risk data, so the code and data stay inside ASU and nothing from it is published here. <!-- TODO: add access/permission details if they're shareable --></dd>
+                  <dt>Outcome</dt>
+                  <dd>Replaced manual spreadsheet tracking and cut manual review time for the VITRA queue.</dd>
+                </dl>
+                <p class="w-links"><span class="muted">internal · no public repo</span></p>
+              </div>
+            </details>
+          </li>
+
+          <!-- P-04 -->
+          <li class="work-item" data-tags="dev">
+            <details>
+              <summary>
+                <span class="w-id">P-04</span>
+                <span><span class="w-title">Flask Blog Platform</span><span class="w-sum">Multi-user blogging app with full authentication.</span></span>
+                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">Python · Flask · SQLAlchemy · Jinja2 · SQLite · bcrypt</span>
+              </summary>
+              <div class="w-body">
+                <dl class="writeup">
+                  <dt>Problem</dt>
+                  <dd>A multi-user content app needs real authentication and a structure that stays maintainable as it grows.</dd>
+                  <dt>What I built</dt>
+                  <dd>A Flask app built on the application factory pattern with four blueprints (users, posts, main, errors). A one-to-many user-to-post model in SQLAlchemy, paginated feeds, per-author pages, and profile image upload with resizing.</dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>bcrypt password hashing, Flask-Login sessions, and time-limited password reset tokens signed with itsdangerous and sent over Flask-Mail. Custom 403, 404 and 500 pages so users never see raw errors.</dd>
+                  <dt>Outcome</dt>
+                  <dd>Routes, forms and handlers stay modular and can be tested separately.</dd>
+                </dl>
+                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Flask-Blog" target="_blank" rel="noopener">github ↗</a></p>
+              </div>
+            </details>
+          </li>
+
+          <!-- P-05 -->
+          <li class="work-item" data-tags="dev">
+            <details>
+              <summary>
+                <span class="w-id">P-05</span>
+                <span><span class="w-title">Weather Desktop Client</span><span class="w-sum">PyQt5 desktop app on the OpenWeatherMap API.</span></span>
+                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">Python · PyQt5 · REST APIs · python-dotenv</span>
+              </summary>
+              <div class="w-body">
+                <dl class="writeup">
+                  <dt>Problem</dt>
+                  <dd>A desktop client for a third-party API has to handle every way the network or the API can fail.</dd>
+                  <dt>What I built</dt>
+                  <dd>A PyQt5 GUI that queries the OpenWeatherMap REST API and shows temperature, conditions and an icon mapped from the response's condition code.</dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>The API key is loaded from environment variables, so no secret ever lands in source control.</dd>
+                  <dt>Outcome</dt>
+                  <dd>Eight HTTP status codes plus connection, timeout and redirect errors each get their own clear message instead of a crash.</dd>
+                </dl>
+                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Weather-app" target="_blank" rel="noopener">github ↗</a></p>
+              </div>
+            </details>
+          </li>
+
+          <!-- ===== IN-PROGRESS PLACEHOLDERS ===== -->
+          <!-- TODO: P-06 is a placeholder. Fill in only once it's real. -->
+          <li class="work-item" data-tags="dev cloud security">
+            <details>
+              <summary>
+                <span class="w-id">P-06</span>
+                <span><span class="w-title">AWS serverless app</span><span class="w-sum">API Gateway, Lambda and DynamoDB, deployed with IaC.</span></span>
+                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">AWS · API Gateway · Lambda · DynamoDB · IaC · IAM</span>
+              </summary>
+              <div class="w-body">
+                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
+                <dl class="writeup">
+                  <dt>Problem</dt><dd>TODO</dd>
+                  <dt>What I built</dt><dd>TODO: API Gateway + Lambda + DynamoDB, infrastructure as code (which tool?)</dd>
+                  <dt class="sec-dt">Security considerations</dt><dd>TODO: least-privilege IAM role per function</dd>
+                  <dt>Outcome</dt><dd>TODO</dd>
+                </dl>
+              </div>
+            </details>
+          </li>
+
+          <!-- TODO: P-07 is a placeholder. Fill in only once it's real. -->
+          <li class="work-item" data-tags="cloud security">
+            <details>
+              <summary>
+                <span class="w-id">P-07</span>
+                <span><span class="w-title">Cloud detection lab</span><span class="w-sum">CloudTrail and GuardDuty/CloudWatch alerts into a triage runbook.</span></span>
+                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">AWS · CloudTrail · GuardDuty · CloudWatch</span>
+              </summary>
+              <div class="w-body">
+                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
+                <dl class="writeup">
+                  <dt>Problem</dt><dd>TODO</dd>
+                  <dt>What I built</dt><dd>TODO: CloudTrail logging → GuardDuty / CloudWatch alerts</dd>
+                  <dt class="sec-dt">Security considerations</dt><dd>TODO: what the detections catch, and the triage runbook</dd>
+                  <dt>Outcome</dt><dd>TODO</dd>
+                </dl>
+              </div>
+            </details>
+          </li>
+
+          <!-- TODO: P-08 is a placeholder. Fill in only once it's real. -->
+          <li class="work-item" data-tags="security">
+            <details>
+              <summary>
+                <span class="w-id">P-08</span>
+                <span><span class="w-title">SOC home lab</span><span class="w-sum">SIEM, log ingestion, sample detections and an investigation write-up.</span></span>
+                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">SIEM (TODO: Splunk / Wazuh / ELK) · detections</span>
+              </summary>
+              <div class="w-body">
+                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
+                <dl class="writeup">
+                  <dt>Problem</dt><dd>TODO</dd>
+                  <dt>What I built</dt><dd>TODO: which SIEM, which log sources</dd>
+                  <dt class="sec-dt">Security considerations</dt><dd>TODO: detections written and an investigation walkthrough</dd>
+                  <dt>Outcome</dt><dd>TODO</dd>
+                </dl>
+              </div>
+            </details>
+          </li>
+
+          <!-- TODO: P-09 is a placeholder. Fill in only once it's real. -->
+          <li class="work-item" data-tags="dev cloud security">
+            <details>
+              <summary>
+                <span class="w-id">P-09</span>
+                <span><span class="w-title">Containerized app with CI/CD</span><span class="w-sum">Docker and GitHub Actions with dependency and secret scanning.</span></span>
+                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
+                <span class="w-stack">Docker · GitHub Actions · dependency scanning · secret scanning</span>
+              </summary>
+              <div class="w-body">
+                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
+                <dl class="writeup">
+                  <dt>Problem</dt><dd>TODO</dd>
+                  <dt>What I built</dt><dd>TODO: which app, pipeline stages</dd>
+                  <dt class="sec-dt">Security considerations</dt><dd>TODO: dependency and secret scanning in the pipeline</dd>
+                  <dt>Outcome</dt><dd>TODO</dd>
+                </dl>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="section fade" aria-labelledby="exp-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">04</span><h2 id="exp-title">Experience</h2></div>
+        <ol class="timeline">
+          <li>
+            <span class="when">jan 2026 — now</span>
+            <div>
+              <p><span class="role">Student Support Specialist</span> <span class="org">· IT Operations, Security &amp; Compliance, ASU</span></p>
+              <ul>
+                <li>Built Python tooling that automates vendor IT risk assessments (VITRA), replacing spreadsheet tracking with checks on ServiceNow data that flag missing docs and overdue reassessments.</li>
+                <li>Support ASU's SOC 2 program: audit evidence, control ownership tracking, and documentation reviewed by internal and external auditors.</li>
+                <li>Triage system and application vulnerabilities during audits, prioritize remediation, and follow up with owners until fixed.</li>
+                <li>Manage least-privilege access provisioning and deprovisioning; script repetitive steps in ServiceNow ticket resolution.</li>
+              </ul>
             </div>
+          </li>
+          <li>
+            <span class="when">sep 2025 — jan 2026</span>
+            <div>
+              <p><span class="role">Instructional Assistant</span> <span class="org">· School of Mathematical &amp; Statistical Sciences, ASU</span></p>
+              <ul>
+                <li>Supported 200- and 400-level math courses through office hours and grading.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">may — aug 2025</span>
+            <div>
+              <p><span class="role">Product Development Intern</span> <span class="org">· NSE Academy, Mumbai</span></p>
+              <ul>
+                <li>Turned market and program data into Power BI and Excel dashboards that informed product decisions.</li>
+                <li>Prototyped educational products, scoping the technical side to user requirements.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">jan — may 2025</span>
+            <div>
+              <p><span class="role">Head of Prototyping</span> <span class="org">· EPICS, ASU</span></p>
+              <ul>
+                <li>Led prototyping for a community engineering project: set timelines and delivered high-fidelity prototypes.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">2025 — now</span>
+            <div>
+              <p><span class="role">Indian Students' Association at ASU</span></p>
+              <ul>
+                <li>Chief of Staff (2026 — present) · Treasurer (2025 — 2026)</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">exp. may 2028</span>
+            <div>
+              <p><span class="role">B.S. Computer Science</span> <span class="org">· Arizona State University</span></p>
+              <ul>
+                <li>GPA 4.00 · Dean's List, two consecutive years · NAMU Scholarship (first year)</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section fade" aria-labelledby="skills-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">05</span><h2 id="skills-title">Skills</h2></div>
+        <div class="skills">
+          <div>
+            <h3><span class="tag tag-dev">●</span> Software &amp; cloud</h3>
+            <ul class="skill-list">
+              <li><span>Python, C++, Java</span><span>languages</span></li>
+              <li><span>TypeScript, JavaScript, SQL</span><span>languages</span></li>
+              <li><span>Flask, SQLAlchemy, Jinja2</span><span>backend</span></li>
+              <li><span>Angular, PyQt5</span><span>frontend</span></li>
+              <li><span>REST APIs, Firebase, SQLite</span><span>data</span></li>
+              <li><span>OpenCV, YOLOv4, CUDA</span><span>vision</span></li>
+              <li><span>Git, GitHub</span><span>tools</span></li>
+              <!-- TODO: list specific AWS services once you've used them -->
+              <li><span>AWS</span><span class="tag-plan">learning</span></li>
+            </ul>
           </div>
-          <h4>Weather Desktop Client</h4>
-          <p>PyQt5 desktop app on the OpenWeatherMap API with a distinct error message for eight HTTP status codes plus timeouts and connection failures. Secrets stay in env vars, out of the repo.</p>
-          <ul class="tech mono"><li>Python</li><li>PyQt5</li><li>REST APIs</li><li>dotenv</li></ul>
-        </article>
+          <div>
+            <h3><span class="tag tag-sec">●</span> Security &amp; ops</h3>
+            <ul class="skill-list">
+              <li><span>SOC 2 audit support</span><span>on the job</span></li>
+              <li><span>Vendor risk (VITRA)</span><span>on the job</span></li>
+              <li><span>Vulnerability triage</span><span>on the job</span></li>
+              <li><span>Least privilege / access mgmt</span><span>on the job</span></li>
+              <li><span>ServiceNow</span><span>on the job</span></li>
+              <li><span>Secrets management</span><span>in my code</span></li>
+              <li><span>SOC fundamentals</span><span class="tag-plan">learning</span></li>
+              <li><span>Cloud security / IAM</span><span class="tag-plan">learning</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CERTIFICATIONS & LEARNING PATH ===== -->
+    <section class="section fade" aria-labelledby="certs-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">06</span><h2 id="certs-title">Certifications &amp; learning path</h2></div>
+        <p class="lede">A roadmap, not a trophy shelf. Nothing here is earned yet.</p>
+        <!-- TODO: all four are placeholders marked "planned". Update status/dates as you go; never mark "done" until you hold the cert. -->
+        <ol class="rows">
+          <li><span>AWS Certified Cloud Practitioner<span class="row-sub">cloud foundations</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
+          <li><span>CompTIA Security+<span class="row-sub">security foundations</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
+          <li><span>AWS Solutions Architect – Associate<span class="row-sub">designing on AWS</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
+          <li><span>AWS Certified Security – Specialty<span class="row-sub">cloud security</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== NOW ===== -->
+    <section class="section now fade" aria-labelledby="now-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">07</span><h2 id="now-title">Now</h2></div>
+        <dl>
+          <dt>working</dt>
+          <dd>Student Support Specialist on ASU's IT Operations, Security &amp; Compliance team.</dd>
+          <dt>learning</dt>
+          <!-- TODO: name the course / resources you're using -->
+          <dd>AWS and cloud security: IAM, logging and least privilege in practice.</dd>
+          <dt>building</dt>
+          <!-- TODO: say what you're actually building right now -->
+          <dd class="tag-plan">TODO: what I'm building right now</dd>
+          <dt>looking for</dt>
+          <dd>Summer 2027 internships in software engineering, cloud, or security.</dd>
+        </dl>
+        <p class="updated">last updated 2026-10-07</p>
+      </div>
+    </section>
+
+    <!-- ===== NOTES ===== -->
+    <section id="notes" class="section fade" aria-labelledby="notes-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">08</span><h2 id="notes-title">Notes</h2></div>
+        <p class="lede">CTF write-ups, cloud security notes and project post-mortems. The first ones are being written.</p>
+        <!-- TODO: these three are placeholders. Replace titles/dates and link each to a real post. -->
+        <ul class="rows">
+          <li><span>TODO: CTF write-up<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-sec">sec</span> · TBD</span></li>
+          <li><span>TODO: Least-privilege IAM, in practice<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-dev">cloud</span> · TBD</span></li>
+          <li><span>TODO: FitStack post-mortem<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-dev">dev</span> · TBD</span></li>
+        </ul>
       </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section id="contact" class="section contact reveal">
-      <h3 class="section-title center"><span class="num">05.</span> what's next?</h3>
-      <h2>Get in touch</h2>
-      <p class="muted">
-        I'm currently looking for Summer 2027 software engineering internships.
-        Whether you have a role, a question, or just want to talk computer vision, my inbox is open.
-      </p>
-      <a href="mailto:ishaanarekar25@gmail.com" class="btn btn-big">say hello</a>
-      <div class="socials mono">
-        <a href="https://github.com/IshaanArekar" target="_blank" rel="noopener">github</a>
-        <a href="https://www.linkedin.com/in/ishaan-arekar" target="_blank" rel="noopener">linkedin</a>
+    <section id="contact" class="section contact fade" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="section-head"><span class="idx">09</span><h2 id="contact-title">Contact</h2></div>
+        <p class="big">Building something, or securing it? Let's talk.</p>
+        <p>I'm looking for Summer 2027 internships in software engineering, cloud, or security. My inbox is open.</p>
+        <a class="btn" href="mailto:ishaanarekar25@gmail.com">ishaanarekar25@gmail.com</a>
+        <div class="contact-links">
+          <a class="link" href="https://github.com/IshaanArekar" target="_blank" rel="noopener">github ↗</a>
+          <a class="link" href="https://www.linkedin.com/in/ishaan-arekar" target="_blank" rel="noopener">linkedin ↗</a>
+          <!-- TODO: add resume.pdf to this folder (remove your phone number first) -->
+          <a class="link" href="resume.pdf" target="_blank" rel="noopener">resume ↗</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer mono muted">
-    built by ishaan arekar · <span id="year"></span>
+  <footer class="footer">
+    <div class="wrap">
+      <span>© 2026 Ishaan Arekar</span>
+      <span class="mono">built by hand · no trackers</span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
