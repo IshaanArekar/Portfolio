@@ -2,11 +2,9 @@
 
 My personal portfolio site.
 
-**Live:** https://ishaanarekar.github.io/Portfolio/
-
 ## Run locally
 
-No build step, it's plain HTML/CSS/JS.
+It's plain HTML/CSS/JS for now:
 
 ```sh
 git clone https://github.com/IshaanArekar/Portfolio.git
