@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ishaan Arekar — Software Engineer</title>
+  <meta name="description" content="Ishaan Arekar — CS student at Arizona State University working in cybersecurity and compliance, learning cloud security, and building AI and full-stack systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <a href="#top" class="logo"><span class="accent">~/</span>ishaan</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-links">
+      <a href="#about"><span class="num">01.</span> about</a>
+      <a href="#security"><span class="num">02.</span> security</a>
+      <a href="#experience"><span class="num">03.</span> experience</a>
+      <a href="#projects"><span class="num">04.</span> projects</a>
+      <a href="#contact"><span class="num">05.</span> contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <p class="mono accent">hi, my name is</p>
+      <h1>Ishaan Arekar.</h1>
+      <h2 class="muted">I build secure, AI-powered systems.</h2>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title mono">zsh — ishaan@portfolio</span>
+        </div>
+        <pre class="terminal-body mono"><span class="prompt">$</span> <span id="typed"></span><span class="cursor">▋</span></pre>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn">view my work</a>
+        <a href="#contact" class="btn btn-ghost">get in touch</a>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section reveal">
+      <h3 class="section-title"><span class="num">01.</span> about me</h3>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a computer science student at <span class="accent">Arizona State University</span>
+            (class of 2028) who likes taking projects end to end, from
+            <span class="accent">real-time computer vision</span> pipelines running on the GPU to
+            <span class="accent">authenticated, multi-user web apps</span>.
+          </p>
+          <p>
+            Right now I work in ASU's <span class="accent">IT Operations, Security &amp; Compliance</span>
+            team: supporting SOC 2 audits, triaging vulnerabilities, managing access, and writing
+            Python that automates the repetitive parts of compliance work.
+          </p>
+          <p>
+            Security is the thread through everything I build, from hashed passwords and signed tokens
+            to keeping secrets out of source control. These days I'm going deeper into
+            <span class="accent">cloud security</span>: how IAM, logging and least privilege actually
+            hold up when apps run in the cloud.
+          </p>
+          <p>
+            I'm looking for a <span class="accent">Summer 2027 software engineering internship</span>.
+          </p>
+        </div>
+        <div class="about-photo">
+          <div class="photo-placeholder mono">IA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECURITY ===== -->
+    <section id="security" class="section reveal">
+      <h3 class="section-title"><span class="num">02.</span> security</h3>
+      <div class="sec-grid">
+        <article class="sec-card">
+          <p class="sec-status mono"><span class="pulse"></span> on the job</p>
+          <h4>Compliance &amp; ops</h4>
+          <ul>
+            <li>SOC 2 audit support: evidence, control ownership, auditor-ready docs</li>
+            <li>Python automation for vendor IT risk assessments (VITRA) on top of ServiceNow data</li>
+            <li>Vulnerability triage and remediation follow-up</li>
+            <li>Least-privilege access provisioning and deprovisioning</li>
+          </ul>
+        </article>
+        <article class="sec-card">
+          <p class="sec-status mono"><span class="pulse"></span> in my code</p>
+          <h4>Secure by default</h4>
+          <ul>
+            <li>bcrypt password hashing and session-based auth</li>
+            <li>Signed, expiring tokens for password reset links</li>
+            <li>Secrets in environment variables, never in the repo</li>
+            <li>Graceful, explicit error handling instead of leaking stack traces</li>
+          </ul>
+        </article>
+        <article class="sec-card">
+          <p class="sec-status mono"><span class="pulse learning"></span> learning now</p>
+          <h4>Cloud security</h4>
+          <ul>
+            <li>IAM policies, roles and least privilege in the cloud</li>
+            <li>The shared responsibility model and common misconfigurations</li>
+            <li>Logging, monitoring and detection for cloud workloads</li>
+            <li>Designing apps to be secure from the architecture up</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE & SKILLS ===== -->
+    <section id="experience" class="section reveal">
+      <h3 class="section-title"><span class="num">03.</span> experience &amp; skills</h3>
+
+      <div class="timeline">
+        <div class="job">
+          <div class="job-head">
+            <h4>Student Support Specialist <span class="accent">@ ASU IT Ops, Security &amp; Compliance</span></h4>
+            <span class="mono muted">Jan 2026 — present</span>
+          </div>
+          <ul>
+            <li>Built Python tooling that automates Vendor IT Risk Assessment (VITRA) workflows, pulling vendor and control data from ServiceNow and flagging missing docs and overdue reassessments.</li>
+            <li>Support the university's SOC 2 program by maintaining audit evidence and tracking control ownership.</li>
+            <li>Triage vulnerabilities during security audits and manage least-privilege access provisioning.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <h4>Instructional Assistant <span class="accent">@ ASU School of Math &amp; Stats</span></h4>
+            <span class="mono muted">Sep 2025 — Jan 2026</span>
+          </div>
+          <ul>
+            <li>Supported 200- and 400-level math courses through office hours and grading.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <h4>Product Development Intern <span class="accent">@ NSE Academy, Mumbai</span></h4>
+            <span class="mono muted">May 2025 — Aug 2025</span>
+          </div>
+          <ul>
+            <li>Built Power BI and Excel dashboards from market and program data that fed product decisions.</li>
+            <li>Prototyped educational products, scoping the technical side to user requirements.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <h4>Head of Prototyping <span class="accent">@ EPICS, ASU</span></h4>
+            <span class="mono muted">Jan 2025 — May 2025</span>
+          </div>
+          <ul>
+            <li>Led prototyping for a community engineering project, set timelines and delivered high-fidelity prototypes.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <h4>B.S. Computer Science <span class="accent">@ Arizona State University</span></h4>
+            <span class="mono muted">Expected May 2028</span>
+          </div>
+          <ul>
+            <li>GPA 4.00 · Dean's List two years running · NAMU Scholarship recipient.</li>
+            <li>Indian Students' Association: Chief of Staff (2026 — present), Treasurer (2025 — 2026).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skills">
+        <div class="skill-group">
+          <h5 class="mono">languages</h5>
+          <ul class="tags"><li>Python</li><li>C++</li><li>Java</li><li>TypeScript</li><li>JavaScript</li><li>SQL</li><li>HTML/CSS</li></ul>
+        </div>
+        <div class="skill-group">
+          <h5 class="mono">ai &amp; vision</h5>
+          <ul class="tags"><li>OpenCV DNN</li><li>YOLOv4</li><li>NumPy</li><li>CUDA</li></ul>
+        </div>
+        <div class="skill-group">
+          <h5 class="mono">frameworks</h5>
+          <ul class="tags"><li>Flask</li><li>SQLAlchemy</li><li>Angular</li><li>PyQt5</li><li>Jinja2</li></ul>
+        </div>
+        <div class="skill-group">
+          <h5 class="mono">data &amp; infra</h5>
+          <ul class="tags"><li>Firebase</li><li>SQLite</li><li>REST APIs</li><li>Git</li><li>Power BI</li></ul>
+        </div>
+        <div class="skill-group">
+          <h5 class="mono">security</h5>
+          <ul class="tags"><li>SOC 2</li><li>Vendor risk (VITRA)</li><li>Vulnerability triage</li><li>Least privilege</li><li>Secrets management</li><li>ServiceNow</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="section reveal">
+      <h3 class="section-title"><span class="num">04.</span> projects</h3>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <div class="card-links">
+              <a href="https://github.com/IshaanArekar/FitStack" target="_blank" rel="noopener" aria-label="FitStack on GitHub">gh</a>
+            </div>
+          </div>
+          <h4>FitStack</h4>
+          <p>Real-time gym occupancy tracker. YOLOv4 counts people through OpenCV's DNN module, auto-switches to the GPU when CUDA is available, and streams throttled updates to Firebase for a live Angular dashboard.</p>
+          <ul class="tech mono"><li>Python</li><li>OpenCV</li><li>YOLOv4</li><li>CUDA</li><li>Firebase</li><li>Angular</li></ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <div class="card-links">
+              <a href="https://scantaps.web.app" target="_blank" rel="noopener" aria-label="ScanTaps live site">↗</a>
+            </div>
+          </div>
+          <h4>ScanTaps</h4>
+          <p>Privacy-first lost and found for ASU's 55,500+ person campus, built through EPICS. Tap an NFC tag or scan a QR code on a lost item and a PWA connects finder and owner over ASU sign-in, with signed URL tokens and no personal details exposed. Team of six; I was budget lead.</p>
+          <ul class="tech mono"><li>PWA</li><li>NFC</li><li>QR</li><li>Firebase</li><li>ASU SSO</li></ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <div class="card-links">
+              <a href="https://github.com/IshaanArekar/Python-Flask-Blog" target="_blank" rel="noopener" aria-label="Flask Blog Platform on GitHub">gh</a>
+            </div>
+          </div>
+          <h4>Flask Blog Platform</h4>
+          <p>Multi-user blogging app built on the application factory pattern with four blueprints. Full auth with bcrypt, Flask-Login sessions and signed, expiring password reset emails.</p>
+          <ul class="tech mono"><li>Flask</li><li>SQLAlchemy</li><li>Jinja2</li><li>SQLite</li><li>bcrypt</li></ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <svg class="folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <div class="card-links">
+              <a href="https://github.com/IshaanArekar/Python-Weather-app" target="_blank" rel="noopener" aria-label="Weather Desktop Client on GitHub">gh</a>
+            </div>
+          </div>
+          <h4>Weather Desktop Client</h4>
+          <p>PyQt5 desktop app on the OpenWeatherMap API with a distinct error message for eight HTTP status codes plus timeouts and connection failures. Secrets stay in env vars, out of the repo.</p>
+          <ul class="tech mono"><li>Python</li><li>PyQt5</li><li>REST APIs</li><li>dotenv</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section contact reveal">
+      <h3 class="section-title center"><span class="num">05.</span> what's next?</h3>
+      <h2>Get in touch</h2>
+      <p class="muted">
+        I'm currently looking for Summer 2027 software engineering internships.
+        Whether you have a role, a question, or just want to talk computer vision, my inbox is open.
+      </p>
+      <a href="mailto:ishaanarekar25@gmail.com" class="btn btn-big">say hello</a>
+      <div class="socials mono">
+        <a href="https://github.com/IshaanArekar" target="_blank" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/ishaan-arekar" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mono muted">
+    built by ishaan arekar · <span id="year"></span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
