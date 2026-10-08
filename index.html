@@ -27,7 +27,6 @@
         <a href="#about">about</a>
         <a href="#work">work</a>
         <a href="#experience">experience</a>
-        <a href="#notes">notes</a>
         <a href="#contact">contact</a>
         <!-- TODO: add resume.pdf to this folder (remove your phone number first) -->
         <a href="resume.pdf" class="resume" target="_blank" rel="noopener">resume ↗</a>
@@ -144,44 +143,49 @@
           <button class="chip" data-filter="security" aria-pressed="false">security</button>
         </div>
 
-        <ul class="work-list">
-          <!-- P-01 -->
-          <li class="work-item" data-tags="dev cloud">
+        <ul class="cards">
+          <li class="work-item card" data-tags="dev cloud">
+            <div class="card-top">
+              <!-- TODO: drop the logo at assets/fitstack-logo.png (square PNG/SVG works best); until then the initials show -->
+              <div class="logo" aria-hidden="true">
+                <img src="assets/fitstack-logo.png" alt="" onerror="this.remove()" />
+                <span>FS</span>
+              </div>
+              <span class="card-meta"><span class="w-id">P-01</span> <span class="tag tag-dev">dev</span></span>
+            </div>
+            <h3 class="card-title">FitStack</h3>
+            <p class="card-sum">Real-time occupancy tracker running YOLOv4 on the GPU.</p>
+            <p class="card-stack">Python · OpenCV · YOLOv4 · CUDA · Firebase · Angular · TypeScript</p>
             <details>
-              <summary>
-                <span class="w-id">P-01</span>
-                <span><span class="w-title">FitStack</span><span class="w-sum">Real-time occupancy tracker running YOLOv4 on the GPU.</span></span>
-                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">Python · OpenCV · YOLOv4 · CUDA · Firebase · Angular · TypeScript</span>
-              </summary>
-              <div class="w-body">
-                <dl class="writeup">
-                  <!-- TODO: add the real space / use case FitStack was built for -->
+              <summary>write-up</summary>
+              <dl class="writeup">
                   <dt>Problem</dt>
-                  <dd>Knowing how many people are in a space right now, live, instead of counting by hand or guessing.</dd>
+                  <dd>Knowing how many people are in a space right now, live, instead of counting by hand or guessing. <!-- TODO: add the real space / use case FitStack was built for --></dd>
                   <dt>What I built</dt>
-                  <dd>A people-counting pipeline that runs YOLOv4 through OpenCV's DNN module, keeps only person detections above 0.5 confidence, and uses non-maximum suppression to turn overlapping boxes into a stable count. It detects CUDA at runtime and moves inference to the GPU when one is present, falling back to CPU otherwise, so one code path runs anywhere. A background thread pool streams counts to Firebase Realtime Database for a live Angular dashboard.</dd>
+                  <dd>A people-counting pipeline that runs YOLOv4 through OpenCV's DNN module, keeps only person detections above 0.5 confidence, and uses non-maximum suppression to turn overlapping boxes into a stable count. It detects CUDA at runtime and moves inference to the GPU when one is present, falling back to CPU otherwise. A background thread pool streams counts to Firebase Realtime Database for a live Angular dashboard.</dd>
                   <dt class="sec-dt">Security considerations</dt>
                   <dd>Only the count goes to the cloud, not video frames, which keeps what leaves the machine to a single number. <!-- TODO: document the Firebase security rules / auth used --></dd>
                   <dt>Outcome</dt>
                   <dd>A live count on the dashboard with writes only on a count change or every 5 seconds, instead of every frame, so network I/O never blocks the capture loop.</dd>
-                </dl>
-                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/FitStack" target="_blank" rel="noopener">github ↗</a></p>
-              </div>
+              </dl>
             </details>
+            <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/FitStack" target="_blank" rel="noopener">github ↗</a></p>
           </li>
-
-          <!-- P-02 -->
-          <li class="work-item" data-tags="dev cloud security">
+          <li class="work-item card" data-tags="dev cloud security">
+            <div class="card-top">
+              <!-- TODO: drop the logo at assets/scantaps-logo.png (square PNG/SVG works best); until then the initials show -->
+              <div class="logo" aria-hidden="true">
+                <img src="assets/scantaps-logo.png" alt="" onerror="this.remove()" />
+                <span>ST</span>
+              </div>
+              <span class="card-meta"><span class="w-id">P-02</span> <span class="tag tag-both">both</span></span>
+            </div>
+            <h3 class="card-title">ScanTaps</h3>
+            <p class="card-sum">Privacy-first lost and found for ASU, using NFC and QR tags.</p>
+            <p class="card-stack">PWA · NFC · QR · Firebase · JavaScript · EPICS team of six</p>
             <details>
-              <summary>
-                <span class="w-id">P-02</span>
-                <span><span class="w-title">ScanTaps</span><span class="w-sum">Privacy-first lost and found for ASU, using NFC and QR tags.</span></span>
-                <span class="w-right"><span class="tag tag-both">both</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">PWA · NFC · QR · Firebase · JavaScript · EPICS team of six</span>
-              </summary>
-              <div class="w-body">
-                <dl class="writeup">
+              <summary>write-up</summary>
+              <dl class="writeup">
                   <dt>Problem</dt>
                   <dd>ASU's Tempe campus has 55,500+ people across a mile-wide campus, and lost and found ran on manual intake and record-keeping, with no verified way to claim an item.</dd>
                   <dt>What I built</dt>
@@ -190,26 +194,23 @@
                   <dd>Designed around privacy: signed tokens in tag URLs instead of personal data, owner sign-in through ASU credentials, finder and owner contact details hidden from each other, no personal info in logs, rate limits against spam, and an audit trail of staff actions.</dd>
                   <dt>Outcome</dt>
                   <dd>Stage 1 shipped: a working PWA with NFC and QR across Android, iOS and desktop, and an encrypted database designed and tested.</dd>
-                </dl>
-                <p class="w-links">
-                  <a class="link" href="https://scantaps.web.app" target="_blank" rel="noopener">live ↗</a>
-                  <a class="link" href="https://github.com/IshaanArekar/ScanTaps" target="_blank" rel="noopener">github ↗</a>
-                </p>
-              </div>
+              </dl>
             </details>
+            <p class="w-links"><a class="link" href="https://scantaps.web.app" target="_blank" rel="noopener">live ↗</a> <a class="link" href="https://github.com/IshaanArekar/ScanTaps" target="_blank" rel="noopener">github ↗</a></p>
           </li>
-
-          <!-- P-03 -->
-          <li class="work-item" data-tags="security dev">
+          <li class="work-item card" data-tags="security dev">
+            <div class="card-top">
+              <div class="logo" aria-hidden="true">
+                <span>VT</span>
+              </div>
+              <span class="card-meta"><span class="w-id">P-03</span> <span class="tag tag-sec">sec</span></span>
+            </div>
+            <h3 class="card-title">VITRA automation</h3>
+            <p class="card-sum">Python tooling for vendor IT risk assessments at ASU.</p>
+            <p class="card-stack">Python · ServiceNow · compliance · work project</p>
             <details>
-              <summary>
-                <span class="w-id">P-03</span>
-                <span><span class="w-title">VITRA automation</span><span class="w-sum">Python tooling for vendor IT risk assessments at ASU.</span></span>
-                <span class="w-right"><span class="tag tag-sec">sec</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">Python · ServiceNow · compliance · work project</span>
-              </summary>
-              <div class="w-body">
-                <dl class="writeup">
+              <summary>write-up</summary>
+              <dl class="writeup">
                   <dt>Problem</dt>
                   <dd>Vendor IT risk assessments were tracked by hand in spreadsheets, so missing vendor documents and overdue reassessments were easy to miss.</dd>
                   <dt>What I built</dt>
@@ -218,23 +219,23 @@
                   <dd>It handles internal vendor-risk data, so the code and data stay inside ASU and nothing from it is published here. <!-- TODO: add access/permission details if they're shareable --></dd>
                   <dt>Outcome</dt>
                   <dd>Replaced manual spreadsheet tracking and cut manual review time for the VITRA queue.</dd>
-                </dl>
-                <p class="w-links"><span class="muted">internal · no public repo</span></p>
-              </div>
+              </dl>
             </details>
+            <p class="w-links"><span class="muted">internal · no public repo</span></p>
           </li>
-
-          <!-- P-04 -->
-          <li class="work-item" data-tags="dev">
+          <li class="work-item card" data-tags="dev">
+            <div class="card-top">
+              <div class="logo" aria-hidden="true">
+                <span>FB</span>
+              </div>
+              <span class="card-meta"><span class="w-id">P-04</span> <span class="tag tag-dev">dev</span></span>
+            </div>
+            <h3 class="card-title">Flask Blog Platform</h3>
+            <p class="card-sum">Multi-user blogging app with full authentication.</p>
+            <p class="card-stack">Python · Flask · SQLAlchemy · Jinja2 · SQLite · bcrypt</p>
             <details>
-              <summary>
-                <span class="w-id">P-04</span>
-                <span><span class="w-title">Flask Blog Platform</span><span class="w-sum">Multi-user blogging app with full authentication.</span></span>
-                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">Python · Flask · SQLAlchemy · Jinja2 · SQLite · bcrypt</span>
-              </summary>
-              <div class="w-body">
-                <dl class="writeup">
+              <summary>write-up</summary>
+              <dl class="writeup">
                   <dt>Problem</dt>
                   <dd>A multi-user content app needs real authentication and a structure that stays maintainable as it grows.</dd>
                   <dt>What I built</dt>
@@ -243,23 +244,23 @@
                   <dd>bcrypt password hashing, Flask-Login sessions, and time-limited password reset tokens signed with itsdangerous and sent over Flask-Mail. Custom 403, 404 and 500 pages so users never see raw errors.</dd>
                   <dt>Outcome</dt>
                   <dd>Routes, forms and handlers stay modular and can be tested separately.</dd>
-                </dl>
-                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Flask-Blog" target="_blank" rel="noopener">github ↗</a></p>
-              </div>
+              </dl>
             </details>
+            <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Flask-Blog" target="_blank" rel="noopener">github ↗</a></p>
           </li>
-
-          <!-- P-05 -->
-          <li class="work-item" data-tags="dev">
+          <li class="work-item card" data-tags="dev">
+            <div class="card-top">
+              <div class="logo" aria-hidden="true">
+                <span>WX</span>
+              </div>
+              <span class="card-meta"><span class="w-id">P-05</span> <span class="tag tag-dev">dev</span></span>
+            </div>
+            <h3 class="card-title">Weather Desktop Client</h3>
+            <p class="card-sum">PyQt5 desktop app on the OpenWeatherMap API.</p>
+            <p class="card-stack">Python · PyQt5 · REST APIs · python-dotenv</p>
             <details>
-              <summary>
-                <span class="w-id">P-05</span>
-                <span><span class="w-title">Weather Desktop Client</span><span class="w-sum">PyQt5 desktop app on the OpenWeatherMap API.</span></span>
-                <span class="w-right"><span class="tag tag-dev">dev</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">Python · PyQt5 · REST APIs · python-dotenv</span>
-              </summary>
-              <div class="w-body">
-                <dl class="writeup">
+              <summary>write-up</summary>
+              <dl class="writeup">
                   <dt>Problem</dt>
                   <dd>A desktop client for a third-party API has to handle every way the network or the API can fail.</dd>
                   <dt>What I built</dt>
@@ -268,94 +269,34 @@
                   <dd>The API key is loaded from environment variables, so no secret ever lands in source control.</dd>
                   <dt>Outcome</dt>
                   <dd>Eight HTTP status codes plus connection, timeout and redirect errors each get their own clear message instead of a crash.</dd>
-                </dl>
-                <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Weather-app" target="_blank" rel="noopener">github ↗</a></p>
-              </div>
+              </dl>
             </details>
+            <p class="w-links"><a class="link" href="https://github.com/IshaanArekar/Python-Weather-app" target="_blank" rel="noopener">github ↗</a></p>
           </li>
-
-          <!-- ===== IN-PROGRESS PLACEHOLDERS ===== -->
-          <!-- TODO: P-06 is a placeholder. Fill in only once it's real. -->
-          <li class="work-item" data-tags="dev cloud security">
-            <details>
-              <summary>
-                <span class="w-id">P-06</span>
-                <span><span class="w-title">AWS serverless app</span><span class="w-sum">API Gateway, Lambda and DynamoDB, deployed with IaC.</span></span>
-                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">AWS · API Gateway · Lambda · DynamoDB · IaC · IAM</span>
-              </summary>
-              <div class="w-body">
-                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
-                <dl class="writeup">
-                  <dt>Problem</dt><dd>TODO</dd>
-                  <dt>What I built</dt><dd>TODO: API Gateway + Lambda + DynamoDB, infrastructure as code (which tool?)</dd>
-                  <dt class="sec-dt">Security considerations</dt><dd>TODO: least-privilege IAM role per function</dd>
-                  <dt>Outcome</dt><dd>TODO</dd>
-                </dl>
+          <li class="work-item card" data-tags="security">
+            <div class="card-top">
+              <div class="logo" aria-hidden="true">
+                <span>SOC</span>
               </div>
-            </details>
-          </li>
-
-          <!-- TODO: P-07 is a placeholder. Fill in only once it's real. -->
-          <li class="work-item" data-tags="cloud security">
+              <span class="card-meta"><span class="w-id">P-06</span> <span class="tag tag-plan">in progress</span></span>
+            </div>
+            <h3 class="card-title">SOC home lab</h3>
+            <p class="card-sum">SIEM, log ingestion, sample detections and an investigation write-up.</p>
+            <p class="card-stack">SIEM (TODO: Splunk / Wazuh / ELK) · detections</p>
+            <!-- TODO: SOC home lab is a placeholder. Fill in only once it's real. -->
+            <p class="placeholder-note">in progress · write-up coming once it's built</p>
             <details>
-              <summary>
-                <span class="w-id">P-07</span>
-                <span><span class="w-title">Cloud detection lab</span><span class="w-sum">CloudTrail and GuardDuty/CloudWatch alerts into a triage runbook.</span></span>
-                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">AWS · CloudTrail · GuardDuty · CloudWatch</span>
-              </summary>
-              <div class="w-body">
-                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
-                <dl class="writeup">
-                  <dt>Problem</dt><dd>TODO</dd>
-                  <dt>What I built</dt><dd>TODO: CloudTrail logging → GuardDuty / CloudWatch alerts</dd>
-                  <dt class="sec-dt">Security considerations</dt><dd>TODO: what the detections catch, and the triage runbook</dd>
-                  <dt>Outcome</dt><dd>TODO</dd>
-                </dl>
-              </div>
-            </details>
-          </li>
-
-          <!-- TODO: P-08 is a placeholder. Fill in only once it's real. -->
-          <li class="work-item" data-tags="security">
-            <details>
-              <summary>
-                <span class="w-id">P-08</span>
-                <span><span class="w-title">SOC home lab</span><span class="w-sum">SIEM, log ingestion, sample detections and an investigation write-up.</span></span>
-                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">SIEM (TODO: Splunk / Wazuh / ELK) · detections</span>
-              </summary>
-              <div class="w-body">
-                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
-                <dl class="writeup">
-                  <dt>Problem</dt><dd>TODO</dd>
-                  <dt>What I built</dt><dd>TODO: which SIEM, which log sources</dd>
-                  <dt class="sec-dt">Security considerations</dt><dd>TODO: detections written and an investigation walkthrough</dd>
-                  <dt>Outcome</dt><dd>TODO</dd>
-                </dl>
-              </div>
-            </details>
-          </li>
-
-          <!-- TODO: P-09 is a placeholder. Fill in only once it's real. -->
-          <li class="work-item" data-tags="dev cloud security">
-            <details>
-              <summary>
-                <span class="w-id">P-09</span>
-                <span><span class="w-title">Containerized app with CI/CD</span><span class="w-sum">Docker and GitHub Actions with dependency and secret scanning.</span></span>
-                <span class="w-right"><span class="tag tag-plan">in progress</span><span class="w-toggle" aria-hidden="true"></span></span>
-                <span class="w-stack">Docker · GitHub Actions · dependency scanning · secret scanning</span>
-              </summary>
-              <div class="w-body">
-                <p class="placeholder-note">placeholder: write-up coming once this is built</p>
-                <dl class="writeup">
-                  <dt>Problem</dt><dd>TODO</dd>
-                  <dt>What I built</dt><dd>TODO: which app, pipeline stages</dd>
-                  <dt class="sec-dt">Security considerations</dt><dd>TODO: dependency and secret scanning in the pipeline</dd>
-                  <dt>Outcome</dt><dd>TODO</dd>
-                </dl>
-              </div>
+              <summary>write-up</summary>
+              <dl class="writeup">
+                  <dt>Problem</dt>
+                  <dd>TODO</dd>
+                  <dt>What I built</dt>
+                  <dd>TODO: which SIEM, which log sources</dd>
+                  <dt class="sec-dt">Security considerations</dt>
+                  <dd>TODO: detections written and an investigation walkthrough</dd>
+                  <dt>Outcome</dt>
+                  <dd>TODO</dd>
+              </dl>
             </details>
           </li>
         </ul>
@@ -465,51 +406,15 @@
       </div>
     </section>
 
-    <!-- ===== CERTIFICATIONS & LEARNING PATH ===== -->
-    <section class="section fade" aria-labelledby="certs-title">
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section class="section fade" aria-labelledby="ach-title">
       <div class="wrap">
-        <div class="section-head"><span class="idx">06</span><h2 id="certs-title">Certifications &amp; learning path</h2></div>
-        <p class="lede">A roadmap, not a trophy shelf. Nothing here is earned yet.</p>
-        <!-- TODO: all four are placeholders marked "planned". Update status/dates as you go; never mark "done" until you hold the cert. -->
-        <ol class="rows">
-          <li><span>AWS Certified Cloud Practitioner<span class="row-sub">cloud foundations</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
-          <li><span>CompTIA Security+<span class="row-sub">security foundations</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
-          <li><span>AWS Solutions Architect – Associate<span class="row-sub">designing on AWS</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
-          <li><span>AWS Certified Security – Specialty<span class="row-sub">cloud security</span></span><span class="row-meta"><span class="dot dot-off" aria-hidden="true"></span>planned</span></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ===== NOW ===== -->
-    <section class="section now fade" aria-labelledby="now-title">
-      <div class="wrap">
-        <div class="section-head"><span class="idx">07</span><h2 id="now-title">Now</h2></div>
-        <dl>
-          <dt>working</dt>
-          <dd>Student Support Specialist on ASU's IT Operations, Security &amp; Compliance team.</dd>
-          <dt>learning</dt>
-          <!-- TODO: name the course / resources you're using -->
-          <dd>AWS and cloud security: IAM, logging and least privilege in practice.</dd>
-          <dt>building</dt>
-          <!-- TODO: say what you're actually building right now -->
-          <dd class="tag-plan">TODO: what I'm building right now</dd>
-          <dt>looking for</dt>
-          <dd>Summer 2027 internships in software engineering, cloud, or security.</dd>
-        </dl>
-        <p class="updated">last updated 2026-10-07</p>
-      </div>
-    </section>
-
-    <!-- ===== NOTES ===== -->
-    <section id="notes" class="section fade" aria-labelledby="notes-title">
-      <div class="wrap">
-        <div class="section-head"><span class="idx">08</span><h2 id="notes-title">Notes</h2></div>
-        <p class="lede">CTF write-ups, cloud security notes and project post-mortems. The first ones are being written.</p>
-        <!-- TODO: these three are placeholders. Replace titles/dates and link each to a real post. -->
+        <div class="section-head"><span class="idx">06</span><h2 id="ach-title">Achievements</h2></div>
+        <!-- TODO: add awards, hackathons and certifications here only once earned -->
         <ul class="rows">
-          <li><span>TODO: CTF write-up<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-sec">sec</span> · TBD</span></li>
-          <li><span>TODO: Least-privilege IAM, in practice<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-dev">cloud</span> · TBD</span></li>
-          <li><span>TODO: FitStack post-mortem<span class="row-sub">placeholder · draft</span></span><span class="row-meta"><span class="tag tag-dev">dev</span> · TBD</span></li>
+          <li><span>4.00 GPA<span class="row-sub">B.S. Computer Science, Arizona State University</span></span><span class="row-meta">academic</span></li>
+          <li><span>Dean's List<span class="row-sub">two consecutive years, ASU</span></span><span class="row-meta">honor</span></li>
+          <li><span>NAMU Scholarship<span class="row-sub">recipient, first year at ASU</span></span><span class="row-meta">scholarship</span></li>
         </ul>
       </div>
     </section>
@@ -517,7 +422,7 @@
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="section contact fade" aria-labelledby="contact-title">
       <div class="wrap">
-        <div class="section-head"><span class="idx">09</span><h2 id="contact-title">Contact</h2></div>
+        <div class="section-head"><span class="idx">07</span><h2 id="contact-title">Contact</h2></div>
         <p class="big">Building something, or securing it? Let's talk.</p>
         <p>I'm looking for Summer 2027 internships in software engineering, cloud, or security. My inbox is open.</p>
         <a class="btn" href="mailto:ishaanarekar25@gmail.com">ishaanarekar25@gmail.com</a>
