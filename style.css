@@ -14,6 +14,9 @@
   --dev: #8ab4f8;        /* software & cloud track */
   --sec: #3ecf8e;        /* security track */
   --plan: #d9b65f;       /* in progress / planned */
+  --glow: rgba(62, 207, 142, 0.07);   /* cursor spotlight */
+  --particle: 138, 140, 144;           /* background dots, as r, g, b */
+  --particle-hot: 62, 207, 142;        /* dots near the cursor */
 
   /* type */
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -233,6 +236,25 @@ img { display: block; max-width: 100%; }
 
 .footer { border-top: 1px solid var(--rule); padding: var(--s-6) 0; }
 .footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s-2); font-size: var(--fs-xs); color: var(--faint); }
+
+/* ===== Live background + cursor ===== */
+#bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.spotlight {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 70%);
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 30; pointer-events: none;
+  width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%;
+  border: 1px solid rgba(232, 232, 230, 0.35); opacity: 0;
+  transition: width 0.2s, height 0.2s, margin 0.2s, border-color 0.2s, opacity 0.3s;
+}
+.cursor-on .spotlight, .cursor-on .cursor-ring { opacity: 1; }
+.cursor-ring.hover { width: 44px; height: 44px; margin: -22px 0 0 -22px; border-color: var(--accent); }
+.cursor-ring.down { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .spotlight, .cursor-ring { display: none; }
+}
 
 /* ===== Gentle fade-in (only when JS + motion allowed) ===== */
 .js .fade { opacity: 0; transition: opacity 0.6s ease; }
