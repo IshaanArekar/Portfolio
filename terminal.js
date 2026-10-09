@@ -13,7 +13,7 @@
   const promptEl = term.querySelector(".term-prompt");
   const titleEl = term.querySelector(".term-title");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const { THEMES, setTheme, currentTheme, closeMenu } = window.portfolio;
+  const { closeMenu } = window.portfolio;
 
   const clean = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : "");
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -190,7 +190,6 @@
     ["open <name>", "open a project, github, linkedin, resume or email"],
     ["pwd · whoami · id", "where and who you are"],
     ["neofetch", "system info"],
-    ["theme [name]", "list or switch themes"],
     ["scan", "port-scan this site (simulated)"],
     ["history · clear", "shell basics"],
     ["sudo hire-me", "the important one"],
@@ -278,22 +277,11 @@
         `<span class="t-ok">ishaan</span>@<span class="t-ok">portfolio</span>`,
         `<span class="t-ok">os</span>      PortfolioOS 1.0`,
         `<span class="t-ok">shell</span>   ish 1.0 (you're in it)`,
-        `<span class="t-ok">theme</span>   ${currentTheme()}`,
+        `<span class="t-ok">theme</span>   hairline dark`,
         `<span class="t-ok">focus</span>   software + security, 50/50`,
         `<span class="t-ok">pkgs</span>    ${projects} projects`,
       ];
       art.forEach((a, i) => printHTML(`<span class="t-ok">${a.replace(/</g, "&lt;")}</span>   ${info[i] || ""}`));
-    },
-    theme(args) {
-      if (!args[0]) {
-        print("themes:", "t-head");
-        Object.entries(THEMES).forEach(([k, t]) =>
-          printHTML(`  ${k === currentTheme() ? '<span class="t-ok">●</span>' : " "} ${k.padEnd(12)}<span class="t-dim">${t.label}</span>`)
-        );
-        return print("usage: theme <name>", "t-dim");
-      }
-      if (setTheme(args[0].toLowerCase())) print(`theme set to ${args[0].toLowerCase()}`, "t-ok");
-      else print(`theme: unknown theme '${args[0]}'`, "t-err");
     },
     scan() {
       const lines = [

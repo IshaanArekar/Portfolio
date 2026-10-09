@@ -10,16 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script>
-    document.documentElement.classList.add("js");
-    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-  </script>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip-link" href="#main">skip to content</a>
   <canvas id="bg" aria-hidden="true"></canvas>
-  <div class="spotlight" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
 
   <!-- ===== NAV ===== -->
   <header class="nav">
@@ -32,10 +27,6 @@
         <a href="#experience">experience</a>
         <a href="#contact">contact</a>
         <button class="nav-btn term-open" aria-haspopup="dialog">&gt;_ terminal</button>
-        <div class="theme-picker">
-          <button class="nav-btn" id="theme-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu">theme</button>
-          <div class="theme-menu" id="theme-menu" role="menu" hidden></div>
-        </div>
         <!-- TODO: add resume.pdf to this folder (remove your phone number first) -->
         <a href="resume.pdf" class="resume" target="_blank" rel="noopener">resume ↗</a>
       </nav>
@@ -484,7 +475,6 @@
       <button data-cmd="cd ~/projects">cd projects</button>
       <button data-cmd="cd ~/experience">cd experience</button>
       <button data-cmd="cat ~/about.txt">about</button>
-      <button data-cmd="theme">theme</button>
       <button data-cmd="exit">exit</button>
     </div>
   </div>
