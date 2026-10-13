@@ -3,15 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ishaan Arekar — Software Engineer &amp; Security</title>
-  <meta name="description" content="Ishaan Arekar, CS student at Arizona State University ('28). Software engineer building full-stack and cloud apps on Python and AWS, and working in security: SOC 2, vulnerability management and cloud security." />
+  <title>Ishaan Arekar | Software Engineer &amp; Security · ASU</title>
+  <meta name="description" content="Ishaan Arekar is a CS student at Arizona State University building full-stack and cloud software and working in security: SOC 2, vulnerability triage, cloud security." />
+  <meta name="author" content="Ishaan Arekar" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <!-- TODO: when ishaanarekar.com is live, swap https://ishaanarekar.github.io/Portfolio/ for https://ishaanarekar.com/ here, in sitemap.xml, robots.txt and 404.html -->
+  <link rel="canonical" href="https://ishaanarekar.github.io/Portfolio/" />
+
+  <!-- link previews (LinkedIn, Slack, iMessage, X) -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Ishaan Arekar" />
+  <meta property="og:title" content="Ishaan Arekar | Software Engineer &amp; Security" />
+  <meta property="og:description" content="CS @ ASU '28. Full-stack and cloud software, plus security: SOC 2, vulnerability triage and cloud security." />
+  <meta property="og:url" content="https://ishaanarekar.github.io/Portfolio/" />
+  <meta property="og:image" content="https://ishaanarekar.github.io/Portfolio/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ishaan Arekar: I build software and keep it secure." />
+  <meta property="profile:first_name" content="Ishaan" />
+  <meta property="profile:last_name" content="Arekar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ishaan Arekar | Software Engineer &amp; Security" />
+  <meta name="twitter:description" content="CS @ ASU '28. Full-stack and cloud software, plus security: SOC 2, vulnerability triage and cloud security." />
+  <meta name="twitter:image" content="https://ishaanarekar.github.io/Portfolio/og-image.png" />
+
+  <!-- structured data: tells search engines who this page is about -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://ishaanarekar.github.io/Portfolio/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Ishaan Arekar",
+      "url": "https://ishaanarekar.github.io/Portfolio/",
+      "image": "https://ishaanarekar.github.io/Portfolio/og-image.png",
+      "jobTitle": "Software Engineer & Security",
+      "description": "Computer science student at Arizona State University working across software engineering, cloud and security.",
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Arizona State University" },
+      "knowsAbout": ["Software engineering", "Full-stack development", "Python", "Flask", "Angular", "Computer vision", "AWS", "Cloud security", "SOC 2", "Vulnerability management", "Access control"],
+      "sameAs": ["https://github.com/IshaanArekar", "https://www.linkedin.com/in/ishaan-arekar"]
+    }
+  }
+  </script>
   <meta name="theme-color" content="#0c0d0f" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- fonts load without blocking the first paint -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
   <link rel="stylesheet" href="style.css" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -41,6 +84,7 @@
     <section id="top" class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-grid">
         <div>
+          <p class="eyebrow">Ishaan Arekar · software engineer &amp; security</p>
           <h1 id="hero-title" data-scramble>I build software and keep it secure.</h1>
           <p class="sub">CS @ ASU '28 · full-stack, AWS &amp; cloud security</p>
           <div class="hero-cta">
@@ -162,7 +206,7 @@
           <li class="work-item card" data-tags="dev cloud">
             <div class="card-top">
               <div class="logo" aria-hidden="true">
-                <img src="assets/fitstack-logo.png" alt="" onerror="this.remove()" />
+                <img src="assets/fitstack-logo.png" alt="" width="166" height="38" loading="lazy" onerror="this.remove()" />
                 <span>FS</span>
               </div>
               <span class="card-meta"><span class="w-id">P-01</span> <span class="tag tag-dev">dev</span></span>
@@ -188,7 +232,7 @@
           <li class="work-item card" data-tags="dev cloud security">
             <div class="card-top">
               <div class="logo" aria-hidden="true">
-                <img src="assets/scantaps-logo.png" alt="" onerror="this.remove()" />
+                <img src="assets/scantaps-logo.png" alt="" width="69" height="38" loading="lazy" onerror="this.remove()" />
                 <span>ST</span>
               </div>
               <span class="card-meta"><span class="w-id">P-02</span> <span class="tag tag-both">both</span></span>
@@ -214,7 +258,7 @@
           <li class="work-item card" data-tags="security dev">
             <div class="card-top">
               <div class="logo" aria-hidden="true">
-                <img src="assets/vitra-logo.svg" alt="" onerror="this.remove()" />
+                <img src="assets/vitra-logo.svg" alt="" width="120" height="38" loading="lazy" onerror="this.remove()" />
                 <span>VT</span>
               </div>
               <span class="card-meta"><span class="w-id">P-03</span> <span class="tag tag-sec">sec</span></span>
@@ -240,7 +284,7 @@
           <li class="work-item card" data-tags="dev">
             <div class="card-top">
               <div class="logo" aria-hidden="true">
-                <img src="assets/flaskblog-logo.svg" alt="" onerror="this.remove()" />
+                <img src="assets/flaskblog-logo.svg" alt="" width="124" height="38" loading="lazy" onerror="this.remove()" />
                 <span>FB</span>
               </div>
               <span class="card-meta"><span class="w-id">P-04</span> <span class="tag tag-dev">dev</span></span>
@@ -266,7 +310,7 @@
           <li class="work-item card" data-tags="dev">
             <div class="card-top">
               <div class="logo" aria-hidden="true">
-                <img src="assets/weather-logo.svg" alt="" onerror="this.remove()" />
+                <img src="assets/weather-logo.svg" alt="" width="118" height="38" loading="lazy" onerror="this.remove()" />
                 <span>WX</span>
               </div>
               <span class="card-meta"><span class="w-id">P-05</span> <span class="tag tag-dev">dev</span></span>
