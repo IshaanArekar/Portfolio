@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 120" fill="none">
+  <!-- sun peeking out from behind a cloud -->
+  <g stroke="#fff" stroke-width="6" stroke-linecap="round">
+    <path d="M58 14 v10 M86 26 l-7 7 M30 26 l7 7 M98 54 h-10"/>
+  </g>
+  <path d="M40 52 a20 20 0 0 1 38 4" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M30 102 h56 a18 18 0 0 0 0 -36 a24 24 0 0 0 -45 -4 a19 19 0 0 0 -11 40 z" fill="#fff"/>
+  <text x="118" y="80" fill="#fff" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="700" font-size="56" letter-spacing="-1.5">weather</text>
+  <circle cx="335" cy="76" r="5" fill="#fff" fill-opacity=".7"/>
+  <text x="120" y="106" fill="#fff" fill-opacity=".7" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" letter-spacing="4">DESKTOP CLIENT</text>
+</svg>

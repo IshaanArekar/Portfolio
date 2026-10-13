@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" fill="none">
+  <!-- shield with a checklist -->
+  <path d="M48 10 L84 22 C84 58 72 90 48 108 C24 90 12 58 12 22 Z" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M30 46 h12 M30 64 h12" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 50 l7 7 l14 -16" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 70 l7 7 l14 -16" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+  <text x="108" y="74" fill="#fff" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="58" letter-spacing="2">VITRA</text>
+  <text x="111" y="102" fill="#fff" fill-opacity=".7" font-family="'Helvetica Neue',Arial,sans-serif" font-size="17" letter-spacing="5.5">RISK AUTOMATION</text>
+</svg>
