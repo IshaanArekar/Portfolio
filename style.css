@@ -178,7 +178,8 @@ img { display: block; max-width: 100%; }
 .card[hidden] { display: none; }
 .card:has(details[open]) { grid-column: 1 / -1; border-color: var(--faint); }
 
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--s-5); }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s-3); margin-bottom: var(--s-5); }
+.card-meta { flex-shrink: 0; }
 .logo {
   position: relative; width: 44px; height: 44px; flex-shrink: 0;
   display: grid; place-items: center; overflow: hidden;
@@ -186,6 +187,10 @@ img { display: block; max-width: 100%; }
   font-family: var(--mono); font-size: var(--fs-xs); color: var(--muted);
 }
 .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--bg); }
+/* wordmark logos: drop the box, let the logo set its own width */
+.logo:has(img) { display: block; width: auto; height: 38px; max-width: 62%; border: 0; background: none; }
+.logo:has(img) img { position: static; display: block; width: auto; max-width: 100%; height: 38px; object-fit: contain; object-position: left center; background: none; }
+.logo:has(img) span { display: none; }
 .card-meta { display: flex; gap: var(--s-3); align-items: baseline; }
 .w-id { font-family: var(--mono); font-size: var(--fs-xs); color: var(--faint); }
 
