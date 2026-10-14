@@ -122,7 +122,7 @@
       "skills.txt": file(skills, { section: "skills" }),
       "achievements.txt": file(achievements, { section: "achievements" }),
       "contact.txt": file(contact, { section: "contact" }),
-      "resume.pdf": file([{ t: "binary file. try: open resume", c: "t-dim" }], { href: "resume.pdf" }),
+      "resume.pdf": file([{ t: "binary file. try: open resume, or download resume", c: "t-dim" }], { href: "resume.pdf" }),
       ".secrets": dir({ "flag.txt": file([], { locked: true }) }, { hidden: true }),
     });
   }
@@ -242,6 +242,7 @@
     ["sections", "map of the whole site"],
     ["goto <section>", "close the terminal and jump there on the page"],
     ["open <name>", "open a project, github, linkedin, resume or email"],
+    ["download resume", "save my resume as a PDF (wget / curl -O work too)"],
     ["pwd · whoami · id", "where and who you are"],
     ["neofetch", "system info"],
     ["scan", "port-scan this site (simulated)"],
@@ -253,7 +254,8 @@
   const commands = {
     help() {
       print("available commands:", "t-head");
-      HELP.forEach(([c, d]) => printHTML(`  <span class="t-ok">${c.padEnd(20)}</span><span class="t-dim">${d}</span>`));
+      const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      HELP.forEach(([c, d]) => printHTML(`  <span class="t-ok">${esc(c.padEnd(22))}</span><span class="t-dim">${esc(d)}</span>`));
       print("");
       print("tip: Tab completes, ↑/↓ walks history, Esc closes.", "t-dim");
     },
@@ -314,6 +316,17 @@
       }
       if (proj) return print(`${proj.title} has no public link.`, "t-warn");
       print(`open: '${args[0]}' not found. try: ls ~/projects`, "t-err");
+    },
+    download(args) {
+      const what = (args.filter((a) => !a.startsWith("-"))[0] || "resume").toLowerCase();
+      if (!/^(~\/)?resume(\.pdf)?$/.test(what)) return print(`download: only the resume is downloadable. try: download resume`, "t-err");
+      const a = document.createElement("a");
+      a.href = "resume.pdf";
+      a.download = "Ishaan-Arekar-Resume.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      print("Ishaan-Arekar-Resume.pdf  100%[==================>]  saved", "t-ok");
     },
     whoami() {
       print("guest");
@@ -412,6 +425,9 @@
   commands.work = commands.projects;
   commands.experience = () => commands.ls(["~/experience"]);
   commands.map = commands.sections;
+  commands.wget = commands.download;
+  commands.curl = commands.download;
+  commands.resume = () => commands.open(["resume"]);
 
   // ----- Input handling -----
   const history = [];
