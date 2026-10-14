@@ -83,6 +83,28 @@
       return `- ${name} (${sub})`;
     });
 
+    const tracks = [];
+    document.querySelectorAll("#tracks .track").forEach((t) => {
+      tracks.push({ t: `${clean(t.querySelector("h3"))}  (${clean(t.querySelector(".tag"))})`, c: "t-head" });
+      tracks.push({ t: clean(t.querySelector(":scope > p")), c: "t-dim" });
+      t.querySelectorAll("li").forEach((li) => {
+        const tag = li.querySelector(".tag");
+        const text = tag ? `${clean(li).replace(clean(tag), "").trim()} (${clean(tag)})` : clean(li);
+        tracks.push(`- ${text}`);
+      });
+      tracks.push("");
+    });
+
+    const status = [...document.querySelectorAll(".hero .meta dt")].map(
+      (dt) => `  ${clean(dt).padEnd(12)} ${clean(dt.nextElementSibling)}`
+    );
+    status.unshift({ t: clean(document.querySelector(".hero .eyebrow")), c: "t-head" }, { t: clean(document.getElementById("hero-title")), c: "t-dim" }, "");
+
+    const eduItem = [...document.querySelectorAll("#experience .timeline > li")].find((li) => /b\.s\.|degree|university/i.test(clean(li)));
+    const education = eduItem
+      ? [{ t: clean(eduItem.querySelector(".role")), c: "t-head" }, { t: [clean(eduItem.querySelector(".org")).replace(/^·\s*/, ""), clean(eduItem.querySelector(".when"))].filter(Boolean).join(" · "), c: "t-dim" }, "", ...[...eduItem.querySelectorAll("ul li")].map((b) => `- ${clean(b)}`)]
+      : [];
+
     const mail = document.querySelector('#contact a[href^="mailto:"]');
     const contact = [...document.querySelectorAll("#contact .contact-links a")].map((a) => ({
       link: a.href,
@@ -91,12 +113,15 @@
     if (mail) contact.unshift({ link: mail.href, t: `${"email".padEnd(10)} ${clean(mail)}` });
 
     return dir({
-      "about.txt": file([...about.flatMap((p) => [p, ""]), { t: "-----BEGIN CERTIFICATE-----", c: "t-dim" }, ...cert, { t: "-----END CERTIFICATE-----", c: "t-dim" }]),
+      "about.txt": file([...about.flatMap((p) => [p, ""]), { t: "-----BEGIN CERTIFICATE-----", c: "t-dim" }, ...cert, { t: "-----END CERTIFICATE-----", c: "t-dim" }], { section: "about" }),
+      "status.txt": file(status, { section: "top" }),
+      "tracks.txt": file(tracks, { section: "tracks" }),
+      "education.txt": file(education, { section: "experience" }),
       projects: dir(projects, { section: "work" }),
       experience: dir(experience, { section: "experience" }),
-      "skills.txt": file(skills),
-      "achievements.txt": file(achievements),
-      "contact.txt": file(contact),
+      "skills.txt": file(skills, { section: "skills" }),
+      "achievements.txt": file(achievements, { section: "achievements" }),
+      "contact.txt": file(contact, { section: "contact" }),
       "resume.pdf": file([{ t: "binary file. try: open resume", c: "t-dim" }], { href: "resume.pdf" }),
       ".secrets": dir({ "flag.txt": file([], { locked: true }) }, { hidden: true }),
     });
@@ -125,6 +150,31 @@
     return node;
   }
   const pathStr = (parts) => (parts.length ? "~/" + parts.join("/") : "~");
+
+  // find a file even without its extension ("cat skills"), and fall back to ~ ("cat skills" from ~/projects)
+  function findFile(path) {
+    const tries = [path, `${path}.txt`, `${path}.md`];
+    if (!path.includes("/") && !path.startsWith("~")) tries.push(`~/${path}`, `~/${path}.txt`, `~/${path}.md`);
+    for (const t of tries) {
+      const parts = resolve(t);
+      const node = nodeAt(parts);
+      if (node) return { node, parts };
+    }
+    return null;
+  }
+
+  // every section on the page, and how to reach it from here
+  const SECTIONS = [
+    ["status", "top", "cat status"],
+    ["about", "about", "cat about"],
+    ["tracks", "tracks", "cat tracks"],
+    ["projects", "work", "ls projects"],
+    ["experience", "experience", "ls experience"],
+    ["education", "experience", "cat education"],
+    ["skills", "skills", "cat skills"],
+    ["achievements", "achievements", "cat achievements"],
+    ["contact", "contact", "cat contact"],
+  ];
 
   // ----- Output helpers -----
   function print(line = "", cls) {
@@ -186,7 +236,11 @@
     ["help", "show this list"],
     ["ls [-a] [dir]", "list files"],
     ["cd <dir>", "change directory (projects, experience, .., ~)"],
-    ["cat <file>", "print a file, e.g. cat about.txt"],
+    ["cat <file>", "print a file, e.g. cat about, cat skills"],
+    ["about · skills · ...", "shortcuts: about, status, tracks, projects, experience,"],
+    ["", "education, skills, achievements, contact"],
+    ["sections", "map of the whole site"],
+    ["goto <section>", "close the terminal and jump there on the page"],
     ["open <name>", "open a project, github, linkedin, resume or email"],
     ["pwd · whoami · id", "where and who you are"],
     ["neofetch", "system info"],
@@ -231,7 +285,8 @@
     cat(args) {
       if (!args.length) return print("cat: missing file operand", "t-err");
       args.forEach((a) => {
-        const node = nodeAt(resolve(a));
+        const found = findFile(a);
+        const node = found && found.node;
         if (!node) return print(`cat: ${a}: No such file or directory`, "t-err");
         if (node.type === "dir") return print(`cat: ${a}: Is a directory`, "t-err");
         if (node.locked) return print(`cat: ${a}: Permission denied. nice try though.`, "t-err");
@@ -327,6 +382,20 @@
     ssh() {
       print("ssh: connect to host ishaan port 22: Connection refused (good. it should be.)", "t-err");
     },
+    sections() {
+      print("everything on the site:", "t-head");
+      SECTIONS.forEach(([name, , how]) => printHTML(`  <span class="t-ok">${name.padEnd(14)}</span><span class="t-dim">${how.padEnd(18)}</span><span class="t-dim">or goto ${name}</span>`));
+    },
+    goto(args) {
+      const name = (args[0] || "").toLowerCase().replace(/\.(txt|md)$/, "");
+      const hit = SECTIONS.find(([n, id]) => n === name || id === name);
+      if (!hit) return print(`goto: unknown section '${args[0] || ""}'. try: sections`, "t-err");
+      print(`jumping to ${hit[0]}…`, "t-ok");
+      setTimeout(() => {
+        close(false);
+        document.getElementById(hit[1]).scrollIntoView();
+      }, reduceMotion ? 0 : 250);
+    },
     exit() {
       close(true);
     },
@@ -335,6 +404,14 @@
   commands.gui = commands.exit;
   commands.quit = commands.exit;
   commands.man = () => commands.help();
+  // section shortcuts: "skills" works like "cat skills", "projects" like "ls projects"
+  ["about", "status", "tracks", "education", "skills", "achievements", "contact"].forEach((name) => {
+    commands[name] = () => commands.cat([`~/${name}`]);
+  });
+  commands.projects = () => commands.ls(["~/projects"]);
+  commands.work = commands.projects;
+  commands.experience = () => commands.ls(["~/experience"]);
+  commands.map = commands.sections;
 
   // ----- Input handling -----
   const history = [];
