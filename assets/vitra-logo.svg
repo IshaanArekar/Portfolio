@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" fill="none">
-  <!-- shield with a checklist -->
-  <path d="M48 10 L84 22 C84 58 72 90 48 108 C24 90 12 58 12 22 Z" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
-  <path d="M30 46 h12 M30 64 h12" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
-  <path d="M50 50 l7 7 l14 -16" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M50 70 l7 7 l14 -16" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
-  <text x="108" y="74" fill="#fff" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="58" letter-spacing="2">VITRA</text>
-  <text x="111" y="102" fill="#fff" fill-opacity=".7" font-family="'Helvetica Neue',Arial,sans-serif" font-size="17" letter-spacing="5.5">RISK AUTOMATION</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392 120" fill="none">
+  <!-- two arrows chasing each other (automation) around a check (vendor review passed) -->
+  <g stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M90 52 A38 38 0 0 0 26 34"/>
+    <path d="M14 30 L26 34 L30 21"/>
+    <path d="M20 68 A38 38 0 0 0 84 86"/>
+    <path d="M96 90 L84 86 L80 99"/>
+    <path d="M38 60 L51 73 L74 46" stroke-width="9"/>
+  </g>
+  <text x="120" y="72" fill="#fff" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="700" font-size="52" letter-spacing="7">VITRA</text>
+  <rect x="122" y="88" width="16" height="3" fill="#fff"/>
+  <text x="146" y="96" fill="#fff" fill-opacity=".7" font-family="Menlo,'SF Mono',monospace" font-size="17" letter-spacing="0.5">vendor risk, automated</text>
 </svg>
