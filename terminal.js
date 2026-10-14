@@ -26,6 +26,42 @@
     return { type: "dir", children, ...extra };
   }
 
+  // ----- Resume: read from resume.txt (a text copy of resume.pdf) -----
+  let resumeText = null;
+  function loadResume() {
+    if (resumeText !== null) return Promise.resolve();
+    return fetch("resume.txt", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.text() : ""))
+      .then((t) => { resumeText = t; })
+      .catch(() => { resumeText = ""; });
+  }
+
+  const RESUME_NAMES = { "technical skills": "skills", "leadership & involvement": "leadership" };
+  function resumeDir() {
+    const lines = (resumeText || "").replace(/\r/g, "").split("\n");
+    if (!lines[0]) {
+      const note = [{ t: "resume text isn't available right now. try: open resume", c: "t-dim" }];
+      return dir({}, { full: note });
+    }
+    const isHeading = (l, i) => i > 0 && /^[A-Z][A-Z &]{3,}$/.test(l.trim());
+    const fmt = (l, i) => (i === 0 || isHeading(l, i) ? { t: l, c: "t-head" } : l);
+    const full = lines.map(fmt);
+    const children = {};
+    let current = null;
+    lines.forEach((l, i) => {
+      if (isHeading(l, i)) {
+        const h = l.trim().toLowerCase();
+        current = `${RESUME_NAMES[h] || slug(h)}.txt`;
+        children[current] = file([{ t: l.trim(), c: "t-head" }]);
+      } else if (current) {
+        children[current].lines.push(l);
+      }
+    });
+    Object.values(children).forEach((f) => { while (f.lines.length && f.lines[f.lines.length - 1] === "") f.lines.pop(); });
+    while (full.length && full[full.length - 1] === "") full.pop();
+    return dir(children, { full });
+  }
+
   function buildFS() {
     const about = [...document.querySelectorAll("#about .about-text > p")].map(clean);
     const cert = [...document.querySelectorAll("#about .cert dt")].map(
@@ -122,7 +158,8 @@
       "skills.txt": file(skills, { section: "skills" }),
       "achievements.txt": file(achievements, { section: "achievements" }),
       "contact.txt": file(contact, { section: "contact" }),
-      "resume.pdf": file([{ t: "binary file. try: open resume, or download resume", c: "t-dim" }], { href: "resume.pdf" }),
+      resume: resumeDir(),
+      "resume.pdf": file([{ t: "binary file. try: cat resume, open resume, or download resume", c: "t-dim" }], { href: "resume.pdf" }),
       ".secrets": dir({ "flag.txt": file([], { locked: true }) }, { hidden: true }),
     });
   }
@@ -242,6 +279,8 @@
     ["sections", "map of the whole site"],
     ["goto <section>", "close the terminal and jump there on the page"],
     ["open <name>", "open a project, github, linkedin, resume or email"],
+    ["cat resume", "read my full resume right here"],
+    ["cd resume", "browse it by section: summary, skills, experience..."],
     ["download resume", "save my resume as a PDF (wget / curl -O work too)"],
     ["pwd · whoami · id", "where and who you are"],
     ["neofetch", "system info"],
@@ -279,6 +318,9 @@
       if (node.section) {
         listDir(node);
         print(`hint: cat <file> to read one, or 'exit' to jump to this section on the page.`, "t-dim");
+      } else if (node.full) {
+        listDir(node);
+        print("hint: cat <section> to read one part, cat ~/resume for all of it, or download resume.", "t-dim");
       }
     },
     pwd() {
@@ -290,6 +332,7 @@
         const found = findFile(a);
         const node = found && found.node;
         if (!node) return print(`cat: ${a}: No such file or directory`, "t-err");
+        if (node.type === "dir" && node.full) return node.full.forEach((l) => print(l)); // cat resume
         if (node.type === "dir") return print(`cat: ${a}: Is a directory`, "t-err");
         if (node.locked) return print(`cat: ${a}: Permission denied. nice try though.`, "t-err");
         node.lines.forEach((l) => print(l));
@@ -531,6 +574,7 @@
     if (!term.hidden) return;
     closeMenu();
     FS = buildFS(); // rebuild each time so it reflects the current page
+    loadResume().then(() => { FS = buildFS(); });
     opener = document.activeElement;
     term.hidden = false;
     document.body.classList.add("term-active");
