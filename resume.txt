@@ -1,0 +1,52 @@
+ISHAAN AREKAR
+Tempe, AZ | ishaanarekar25@gmail.com | github.com/IshaanArekar
+
+SUMMARY
+Computer Science student at Arizona State University (Class of 2028) focused on cybersecurity, secure systems engineering, and full-stack software, with hands-on experience in security auditing, compliance automation, and vulnerability assessment through a role in ASU IT Operations, Security & Compliance. Takes projects end-to-end, from real-time computer vision pipelines to authenticated multi-user web apps, built in Python, CUDA-accelerated OpenCV, Flask, and TypeScript, all open-sourced on GitHub. Seeking a Summer 2027 cybersecurity or software engineering internship.
+
+EDUCATION
+Arizona State University, Tempe, AZ | Expected May 2028
+B.S. Computer Science | GPA 4.00
+- Dean's List, two consecutive years. NAMU Scholarship recipient (first year).
+
+TECHNICAL SKILLS
+Security & Compliance: SOC 2 audit support, vendor/IT risk assessment (VITRA) automation, vulnerability identification & remediation tracking, access control administration, security & compliance auditing, ServiceNow
+Languages: Python, C++, Java, TypeScript, JavaScript, SQL, HTML/CSS
+AI & Computer Vision: OpenCV DNN, YOLOv4, NumPy, CUDA / GPU inference backends, real-time video pipelines
+Frameworks: Flask, SQLAlchemy, Jinja2, Flask-Login, Flask-Mail, Angular, PyQt5
+Data & Infrastructure: Firebase Realtime DB, SQLite, REST APIs, Git, GitHub, Power BI
+
+EXPERIENCE
+Student Support Specialist, IT Operations, Security & Compliance, ASU | Jan 2026 - Present
+- Support the university's SOC 2 compliance program by maintaining audit evidence, tracking control ownership, and preparing documentation reviewed by internal and external auditors.
+- Built internal Python tooling to automate Vendor IT Risk Assessment (VITRA) workflows, replacing manual spreadsheet tracking with scripted checks that flag missing vendor documentation and overdue reassessments, and pull vendor/control data from ServiceNow to generate status reports, cutting manual review time for the VITRA queue.
+- Inspect and triage system and application vulnerabilities as part of routine security audits, documenting findings, prioritizing remediation, and following up with system owners to confirm fixes.
+- Manage access controls and account provisioning/deprovisioning under least-privilege and compliance requirements, and triage IT/security tickets in ServiceNow, writing resolution scripts that reduce repetitive manual steps.
+
+Product Development Intern, NSE Academy, Mumbai, India | May 2025 - Aug 2025
+- Analyzed market and program performance data in Power BI and Excel, turning raw datasets into dashboards that fed product decisions, and prototyped educational products with technical scope aligned to user requirements.
+
+Instructional Assistant, School of Mathematical & Statistical Sciences, ASU | Sep 2025 - Jan 2026
+- Supported 200- and 400-level mathematics courses, walking students through problem-solving approaches in office hours and assisting with grading.
+
+PROJECTS
+Fit Stack | Real-Time Occupancy Tracker | github.com/IshaanArekar/FitStack
+Python, OpenCV, YOLOv4, CUDA, Firebase, Angular, TypeScript
+- Built a real-time people-counting pipeline running YOLOv4 through the OpenCV DNN module, filtering to the person class above a 0.5 confidence threshold and applying non-maximum suppression to collapse overlapping boxes into a stable live count.
+- Implemented runtime CUDA capability detection that promotes inference to the GPU backend when a CUDA device is present and falls back to CPU otherwise, keeping a single code path portable across machines.
+- Streamed counts to Firebase Realtime Database from a background thread pool with change-based throttling, writing only on a count change or a 5-second interval rather than every frame so network I/O never blocks the capture loop. Surfaced the live value in an Angular dashboard.
+
+Flask Blog Platform | Multi-User Content Application | github.com/IshaanArekar/Python-Flask-Blog
+Python, Flask, SQLAlchemy, Jinja2, SQLite, bcrypt
+- Architected the app around the factory pattern with four registered blueprints (users, posts, main, errors), keeping routes, forms, and handlers modular and independently testable.
+- Implemented authentication end to end: bcrypt password hashing, Flask-Login sessions, and expiring reset tokens signed with itsdangerous and delivered over Flask-Mail.
+- Modeled a one-to-many user and post relationship in SQLAlchemy with paginated feeds, per-author views, profile image upload and resizing, and custom 403, 404, and 500 error pages.
+
+Weather Desktop Client | github.com/IshaanArekar/Python-Weather-app
+Python, PyQt5, REST APIs, python-dotenv
+- Built a desktop GUI in PyQt5 that queries the OpenWeatherMap REST API and renders temperature, conditions, and a glyph mapped from the response condition code.
+- Wrote failure handling across eight HTTP status codes plus connection, timeout, and redirect exceptions with a distinct message for each, and loaded API credentials from environment variables to keep secrets out of source control.
+
+LEADERSHIP & INVOLVEMENT
+- Head of Prototyping, EPICS, ASU | Jan 2025 - May 2025. Led prototyping for a community engineering project, setting timelines and delivering high-fidelity prototypes.
+- Indian Students' Association at ASU | Chief of Staff (2026 - Present), Treasurer (2025 - 2026).
