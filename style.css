@@ -250,6 +250,9 @@ img { display: block; max-width: 100%; }
   transition: color 0.15s, border-color 0.15s;
 }
 .btn:hover { color: var(--accent); border-color: var(--accent); }
+.contact-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.btn-ghost { border-color: var(--rule); color: var(--muted); }
+.btn-ghost:hover { color: var(--text); border-color: var(--text); }
 .contact-links { display: flex; flex-wrap: wrap; gap: var(--s-5); margin-top: var(--s-6); font-family: var(--mono); font-size: var(--fs-sm); }
 
 .footer { border-top: 1px solid var(--rule); padding: var(--s-6) 0; }
