@@ -136,11 +136,11 @@ img { display: block; max-width: 100%; }
 .meta dd { color: var(--text); }
 
 /* ===== About ===== */
-.about-grid { display: grid; grid-template-columns: 1fr 240px; gap: var(--s-7); align-items: start; }
+.about-grid { display: grid; grid-template-columns: 1fr 280px; gap: var(--s-7); align-items: start; }
 .about-text p { color: var(--muted); max-width: 62ch; }
 .about-text p + p { margin-top: var(--s-4); }
 .about-text strong { color: var(--text); font-weight: 500; }
-.photo { width: 100%; height: auto; aspect-ratio: 1; border: 1px solid var(--rule); border-radius: var(--radius); object-fit: cover; }
+.photo { width: 100%; height: auto; aspect-ratio: 4 / 5; border: 1px solid var(--rule); border-radius: var(--radius); object-fit: cover; }
 .photo-placeholder { display: grid; place-items: center; font-family: var(--mono); color: var(--faint); font-size: var(--fs-lg); background: var(--bg-raised); }
 
 .cert {
@@ -314,7 +314,7 @@ img { display: block; max-width: 100%; }
   .meta dd { margin-bottom: var(--s-3); }
 
   .about-grid { grid-template-columns: 1fr; gap: var(--s-6); }
-  .about-photo { max-width: 180px; order: -1; }
+  .about-photo { max-width: 260px; order: -1; }
 
   .tracks { grid-template-columns: 1fr; }
   .track, .track + .track { padding: var(--s-6) 0; border-left: 0; }
