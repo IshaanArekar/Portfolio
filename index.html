@@ -55,7 +55,7 @@
   <!-- fonts load without blocking the first paint -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
-  <link rel="stylesheet" href="style.css?v=20261015" />
+  <link rel="stylesheet" href="style.css?v=20261015c" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -72,7 +72,6 @@
         <a href="#work">work</a>
         <a href="#experience">experience</a>
         <a href="#contact">contact</a>
-        <button class="nav-btn term-open" aria-haspopup="dialog">&gt;_ terminal</button>
         <a href="resume.pdf" class="resume" target="_blank" rel="noopener">resume ↗</a>
       </nav>
     </div>
@@ -87,15 +86,35 @@
           <h1 id="hero-title" data-scramble>I build software and keep it secure.</h1>
           <p class="sub">CS @ ASU '28 · full-stack, AWS &amp; cloud security</p>
           <div class="hero-cta">
-            <button class="btn btn-accent term-open" aria-haspopup="dialog">$ ./open-terminal</button>
             <a class="btn" href="#work">view work</a>
             <a class="btn btn-solid" href="resume.pdf" download="Ishaan-Arekar-Resume.pdf">resume ↓</a>
-            <span class="hint">or press <kbd>`</kbd> anywhere</span>
           </div>
         </div>
-        <div class="seclog" aria-label="Simulated security log, decoration only">
-          <div class="seclog-head"><span class="live">sec.log</span><span>simulated</span></div>
-          <ol id="seclog" aria-hidden="true"></ol>
+        <!-- ===== TERMINAL (inline, expands to full screen) ===== -->
+        <div class="hero-term">
+        <div id="term" class="term" role="region" aria-label="Interactive terminal">
+          <div class="term-bar">
+            <span class="d"></span><span class="d"></span><span class="d"></span>
+            <span class="term-title">guest@ishaan: ~</span>
+            <button class="term-full" type="button" aria-pressed="false" aria-label="Full screen terminal">⤢ full screen</button>
+          </div>
+          <div class="term-body">
+            <div class="term-out" role="log" aria-live="polite"></div>
+            <form class="term-line" autocomplete="off">
+              <label class="term-prompt" for="term-in">guest@ishaan:~$</label>
+              <input id="term-in" type="text" placeholder="type help" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" />
+            </form>
+          </div>
+          <div class="term-chips" aria-label="Quick commands">
+            <button type="button" data-cmd="help">help</button>
+            <button type="button" data-cmd="ls">ls</button>
+            <button type="button" data-cmd="cd ~/projects">cd projects</button>
+            <button type="button" data-cmd="cat resume">cat resume</button>
+            <button type="button" data-cmd="cat sec.log">sec.log</button>
+            <button type="button" data-cmd="sudo hire-me">hire me</button>
+          </div>
+        </div>
+        <p class="term-hint">try <kbd>cd projects</kbd> · <kbd>`</kbd> full screen</p>
         </div>
       </div>
       <dl class="meta">
@@ -505,31 +524,7 @@
     </div>
   </footer>
 
-  <!-- ===== TERMINAL MODE ===== -->
-  <div id="term" class="term" role="dialog" aria-modal="true" aria-label="Terminal" hidden>
-    <div class="term-bar">
-      <span class="d"></span><span class="d"></span><span class="d"></span>
-      <span class="term-title">guest@ishaan: ~</span>
-      <button class="term-close" aria-label="Close terminal">exit ✕</button>
-    </div>
-    <div class="term-body">
-      <div class="term-out" role="log" aria-live="polite"></div>
-      <form class="term-line" autocomplete="off">
-        <label class="term-prompt" for="term-in">guest@ishaan:~$</label>
-        <input id="term-in" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" />
-      </form>
-    </div>
-    <div class="term-chips" aria-label="Quick commands">
-      <button data-cmd="help">help</button>
-      <button data-cmd="ls">ls</button>
-      <button data-cmd="cd ~/projects">cd projects</button>
-      <button data-cmd="cd ~/experience">cd experience</button>
-      <button data-cmd="cat ~/about.txt">about</button>
-      <button data-cmd="exit">exit</button>
-    </div>
-  </div>
-
-  <script src="script.js?v=20261015"></script>
-  <script src="terminal.js?v=20261015"></script>
+  <script src="script.js?v=20261015c"></script>
+  <script src="terminal.js?v=20261015c"></script>
 </body>
 </html>
