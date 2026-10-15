@@ -111,8 +111,8 @@ img { display: block; max-width: 100%; }
 .nav-links { display: flex; align-items: center; gap: var(--s-5); font-size: var(--fs-sm); color: var(--muted); }
 .nav-links a { transition: color 0.15s; }
 .nav-links a:hover { color: var(--text); }
-.nav-links .resume { font-family: var(--mono); font-size: var(--fs-xs); color: var(--text); border: 1px solid var(--rule); padding: var(--s-1) var(--s-3); border-radius: var(--radius); }
-.nav-links .resume:hover { border-color: var(--accent); color: var(--accent); }
+.nav-links .resume { font-family: var(--mono); font-size: var(--fs-xs); color: var(--accent); background: var(--glow); border: 1px solid var(--accent); padding: var(--s-1) var(--s-3); border-radius: var(--radius); transition: background 0.15s, color 0.15s; }
+.nav-links .resume:hover { background: var(--accent); color: var(--bg); }
 .nav-toggle {
   display: none; background: none; border: 1px solid var(--rule); border-radius: var(--radius);
   color: var(--text); font-family: var(--mono); font-size: var(--fs-xs); padding: var(--s-1) var(--s-3); cursor: pointer;
@@ -310,6 +310,9 @@ kbd {
 }
 .btn-accent { border-color: var(--accent); color: var(--accent); }
 .btn-accent:hover { background: var(--glow); }
+/* solid accent: reserved for the resume download, the main call to action */
+.btn-solid { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 500; }
+.btn-solid:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
 
 .seclog {
   border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card);
