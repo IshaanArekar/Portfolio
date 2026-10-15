@@ -140,7 +140,7 @@ img { display: block; max-width: 100%; }
 .about-text p { color: var(--muted); max-width: 62ch; }
 .about-text p + p { margin-top: var(--s-4); }
 .about-text strong { color: var(--text); font-weight: 500; }
-.photo { width: 100%; aspect-ratio: 1; border: 1px solid var(--rule); border-radius: var(--radius); object-fit: cover; }
+.photo { width: 100%; height: auto; aspect-ratio: 1; border: 1px solid var(--rule); border-radius: var(--radius); object-fit: cover; }
 .photo-placeholder { display: grid; place-items: center; font-family: var(--mono); color: var(--faint); font-size: var(--fs-lg); background: var(--bg-raised); }
 
 .cert {
