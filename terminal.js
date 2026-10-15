@@ -1,5 +1,6 @@
 // =========================================================
-// Terminal mode: a tiny Linux-style shell over the page.
+// Terminal: a tiny Linux-style shell that lives in the hero and
+// can expand to full screen.
 // The file system is built from the page itself, so editing
 // index.html updates both views.
 // =========================================================
@@ -13,7 +14,6 @@
   const promptEl = term.querySelector(".term-prompt");
   const titleEl = term.querySelector(".term-title");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const { closeMenu } = window.portfolio;
 
   const clean = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : "");
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -60,6 +60,26 @@
     Object.values(children).forEach((f) => { while (f.lines.length && f.lines[f.lines.length - 1] === "") f.lines.pop(); });
     while (full.length && full[full.length - 1] === "") full.pop();
     return dir(children, { full });
+  }
+
+  const LOG_LINES = [
+    ["allow", "443/tcp tls1.3 handshake 198.51.100.24"],
+    ["block", "22/tcp brute-force 203.0.113.7 rate-limited"],
+    ["audit", "iam: least-privilege check passed"],
+    ["ok", "soc2: evidence synced, 0 gaps"],
+    ["scan", "deps: 0 critical, 0 high"],
+    ["alert", "auth: 5 failed logins 192.0.2.41 triaged"],
+    ["allow", "api: token signature verified"],
+    ["block", "waf: sqli pattern dropped 203.0.113.19"],
+    ["audit", "access review: 2 stale accounts revoked"],
+    ["ok", "secrets: none found in repo"],
+    ["scan", "vuln: CVE patched on host-07"],
+    ["allow", "deploy: build signed and shipped"],
+  ];
+  const LEVEL_CLASS = { allow: "t-ok", ok: "t-ok", block: "t-err", alert: "t-err", audit: "t-info", scan: "t-info" };
+  function logLine([lv, msg]) {
+    const stamp = new Date().toTimeString().slice(0, 8);
+    return { t: `${stamp} [${lv}]`.padEnd(18) + msg, c: LEVEL_CLASS[lv] };
   }
 
   function buildFS() {
@@ -158,6 +178,7 @@
       "skills.txt": file(skills, { section: "skills" }),
       "achievements.txt": file(achievements, { section: "achievements" }),
       "contact.txt": file(contact, { section: "contact" }),
+      "sec.log": file([{ t: "# simulated feed, decoration only. IPs are documentation ranges (RFC 5737)", c: "t-dim" }, ...LOG_LINES.map(logLine)]),
       resume: resumeDir(),
       "resume.pdf": file([{ t: "binary file. try: cat resume, open resume, or download resume", c: "t-dim" }], { href: "resume.pdf" }),
       ".secrets": dir({ "flag.txt": file([], { locked: true }) }, { hidden: true }),
@@ -286,6 +307,8 @@
     ["neofetch", "system info"],
     ["scan", "port-scan this site (simulated)"],
     ["history · clear", "shell basics"],
+    ["cat sec.log · tail -f sec.log", "the (simulated) security feed"],
+    ["fullscreen", "toggle full screen (or press `)"],
     ["sudo hire-me", "the important one"],
     ["exit", "back to the normal site"],
   ];
@@ -448,12 +471,27 @@
       if (!hit) return print(`goto: unknown section '${args[0] || ""}'. try: sections`, "t-err");
       print(`jumping to ${hit[0]}…`, "t-ok");
       setTimeout(() => {
-        close(false);
+        collapse(false);
         document.getElementById(hit[1]).scrollIntoView();
       }, reduceMotion ? 0 : 250);
     },
+    tail(args) {
+      if (!args.some((a) => /sec\.log$/.test(a))) return print("usage: tail [-f] sec.log", "t-warn");
+      if (!args.includes("-f")) return LOG_LINES.slice(-6).forEach((l) => print(logLine(l)));
+      print("streaming sec.log (simulated)… stops after a few lines", "t-dim");
+      LOG_LINES.slice(0, 8).forEach((l, i) =>
+        setTimeout(() => { print(logLine(l)); scrollDown(); if (i === 7) { print("^C", "t-dim"); scrollDown(); } }, reduceMotion ? 0 : (i + 1) * 450)
+      );
+    },
+    fullscreen() {
+      if (isFull()) collapse(false);
+      else expand();
+    },
     exit() {
-      close(true);
+      if (isFull()) return collapse(true);
+      const node = nodeAt(cwd);
+      if (node && node.section) return document.getElementById(node.section).scrollIntoView();
+      print("you're already on the page. hit ⤢ full screen for more room.", "t-dim");
     },
   };
   commands.ll = (args) => commands.ls(["-a", ...args]);
@@ -471,12 +509,14 @@
   commands.wget = commands.download;
   commands.curl = commands.download;
   commands.resume = () => commands.open(["resume"]);
+  commands.full = commands.fullscreen;
 
   // ----- Input handling -----
   const history = [];
   let histIdx = 0;
 
   function run(raw) {
+    FS = buildFS();
     const line = raw.trim();
     echoCommand(raw);
     if (line) {
@@ -526,6 +566,7 @@
 
   input.addEventListener("keydown", (e) => {
     if (e.key === "Tab") {
+      if (!input.value && !isFull()) return; // empty inline prompt: let Tab move focus on, so nobody gets trapped
       e.preventDefault();
       complete();
     } else if (e.key === "ArrowUp") {
@@ -551,64 +592,88 @@
     if (!window.getSelection().toString()) input.focus();
   });
 
-  // ----- Open / close -----
-  let opener = null;
-  let booted = false;
+  // ----- Boot + live demo -----
+  let userTyped = false;
+  input.addEventListener("keydown", () => { userTyped = true; }, { once: true });
 
   function boot() {
     const lines = [
       ["[  OK  ] Mounted /home/guest", "t-ok"],
       ["[  OK  ] Started portfolio.service", "t-ok"],
-      ["[  OK  ] Loaded projects, experience, skills", "t-ok"],
       ["[  OK  ] Firewall up · ssh disabled · no trackers", "t-ok"],
       ["", ""],
       ["PortfolioOS 1.0 · ishaan arekar · software engineering + security", "t-head"],
-      ["type 'help' to get started, or try: cd projects", "t-dim"],
+      ["type 'help', or try: cd projects, cat resume", "t-dim"],
       ["", ""],
     ];
     if (reduceMotion) return lines.forEach(([t, c]) => print(t, c));
-    lines.forEach(([t, c], i) => setTimeout(() => { print(t, c); scrollDown(); }, i * 90));
+    lines.forEach(([t, c], i) => setTimeout(() => { print(t, c); scrollDown(); }, 300 + i * 110));
+    setTimeout(() => demoType("ls"), 300 + lines.length * 110 + 600);
   }
 
-  function open() {
-    if (!term.hidden) return;
-    closeMenu();
-    FS = buildFS(); // rebuild each time so it reflects the current page
-    loadResume().then(() => { FS = buildFS(); });
-    opener = document.activeElement;
-    term.hidden = false;
+  // types a command on its own so the panel feels alive, unless the visitor got there first
+  function demoType(cmd) {
+    if (userTyped) return;
+    let k = 0;
+    const t = setInterval(() => {
+      if (userTyped) { clearInterval(t); input.value = ""; return; }
+      input.value = cmd.slice(0, ++k);
+      if (k === cmd.length) {
+        clearInterval(t);
+        setTimeout(() => { if (!userTyped) { input.value = ""; run(cmd); } }, 350);
+      }
+    }, 120);
+  }
+
+  // ----- Inline <-> full screen -----
+  const fullBtn = term.querySelector(".term-full");
+  const isFull = () => term.classList.contains("is-full");
+
+  function expand() {
+    if (isFull()) return;
+    term.classList.add("is-full");
+    term.setAttribute("role", "dialog");
+    term.setAttribute("aria-modal", "true");
     document.body.classList.add("term-active");
-    updatePrompt();
-    if (!booted) { boot(); booted = true; }
+    fullBtn.setAttribute("aria-pressed", "true");
+    fullBtn.textContent = "⤡ exit full screen";
+    scrollDown();
     setTimeout(() => input.focus(), 30);
   }
 
-  function close(jump) {
-    if (term.hidden) return;
-    term.hidden = true;
+  function collapse(jump) {
+    if (!isFull()) return;
+    term.classList.remove("is-full");
+    term.setAttribute("role", "region");
+    term.removeAttribute("aria-modal");
     document.body.classList.remove("term-active");
+    fullBtn.setAttribute("aria-pressed", "false");
+    fullBtn.textContent = "⤢ full screen";
+    scrollDown();
     const node = nodeAt(cwd);
-    if (jump && node && node.section) {
-      document.getElementById(node.section).scrollIntoView();
-    } else if (opener) {
-      opener.focus();
-    }
+    if (jump && node && node.section) document.getElementById(node.section).scrollIntoView();
+    else fullBtn.focus({ preventScroll: true });
   }
 
-  document.querySelectorAll(".term-open").forEach((b) => b.addEventListener("click", open));
-  term.querySelector(".term-close").addEventListener("click", () => close(false));
+  fullBtn.addEventListener("click", () => (isFull() ? collapse(false) : expand()));
 
   document.addEventListener("keydown", (e) => {
     const typing = /input|textarea|select/i.test(e.target.tagName) || e.target.isContentEditable;
-    if (term.hidden && (e.key === "`" || e.key === "~") && !typing && !e.metaKey && !e.ctrlKey) {
+    if ((e.key === "`" || e.key === "~") && !typing && !e.metaKey && !e.ctrlKey) {
       e.preventDefault();
-      open();
-    } else if (!term.hidden && e.key === "Escape") {
-      close(false);
-    } else if (!term.hidden && e.key === "Tab" && e.target !== input) {
-      // keep focus inside the dialog
+      isFull() ? collapse(false) : expand();
+    } else if (isFull() && e.key === "Escape") {
+      collapse(false);
+    } else if (isFull() && e.key === "Tab" && e.target !== input && e.target !== fullBtn) {
+      // keep focus inside the full-screen terminal
       e.preventDefault();
       input.focus();
     }
   });
+
+  // ----- Start -----
+  FS = buildFS();
+  updatePrompt();
+  loadResume().then(() => { FS = buildFS(); });
+  boot();
 })();

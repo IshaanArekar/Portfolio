@@ -93,42 +93,6 @@ if ("IntersectionObserver" in window) {
   fades.forEach(reveal);
 }
 
-// ----- Simulated security log in the hero -----
-// Decoration only. IPs are from the documentation ranges (RFC 5737).
-const seclog = document.getElementById("seclog");
-const LOG_LINES = [
-  ["allow", "443/tcp tls1.3 handshake 198.51.100.24"],
-  ["block", "22/tcp brute-force 203.0.113.7 rate-limited"],
-  ["audit", "iam: least-privilege check passed"],
-  ["ok", "soc2: evidence synced, 0 gaps"],
-  ["scan", "deps: 0 critical, 0 high"],
-  ["alert", "auth: 5 failed logins 192.0.2.41 triaged"],
-  ["allow", "api: token signature verified"],
-  ["block", "waf: sqli pattern dropped 203.0.113.19"],
-  ["audit", "access review: 2 stale accounts revoked"],
-  ["ok", "secrets: none found in repo"],
-  ["scan", "vuln: CVE patched on host-07"],
-  ["allow", "deploy: build signed and shipped"],
-];
-
-if (seclog) {
-  let i = 0;
-  const stamp = () => new Date().toTimeString().slice(0, 8);
-  const add = () => {
-    const [lv, msg] = LOG_LINES[i++ % LOG_LINES.length];
-    const li = document.createElement("li");
-    li.innerHTML = `<span class="t-dim">${stamp()}</span> <span class="lv lv-${lv}">[${lv}]</span> ${msg}`;
-    seclog.appendChild(li);
-    while (seclog.children.length > 9) seclog.firstElementChild.remove();
-  };
-  if (reduceMotion) {
-    for (let k = 0; k < 9; k++) add();
-  } else {
-    for (let k = 0; k < 4; k++) add();
-    setInterval(() => { if (!document.hidden) add(); }, 1400);
-  }
-}
-
 // ----- Live background: slow drifting particle network -----
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
