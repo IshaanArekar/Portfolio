@@ -161,12 +161,13 @@
       ? [{ t: clean(eduItem.querySelector(".role")), c: "t-head" }, { t: [clean(eduItem.querySelector(".org")).replace(/^·\s*/, ""), clean(eduItem.querySelector(".when"))].filter(Boolean).join(" · "), c: "t-dim" }, "", ...[...eduItem.querySelectorAll("ul li")].map((b) => `- ${clean(b)}`)]
       : [];
 
-    const mail = document.querySelector('#contact a[href^="mailto:"]');
     const contact = [...document.querySelectorAll("#contact .contact-links a")].map((a) => ({
       link: a.href,
-      t: `${clean(a).replace(" ↗", "").padEnd(10)} ${a.getAttribute("href")}`,
+      t: `${clean(a).replace(" ↗", "").padEnd(12)} ${a.getAttribute("href")}`,
     }));
-    if (mail) contact.unshift({ link: mail.href, t: `${"email".padEnd(10)} ${clean(mail)}` });
+    if (document.getElementById("contact-form")) {
+      contact.unshift({ t: `${"message".padEnd(12)} type 'message' to jump to the contact form`, c: "t-ok" });
+    }
 
     return dir({
       "about.txt": file([...about.flatMap((p) => [p, ""]), { t: "-----BEGIN CERTIFICATE-----", c: "t-dim" }, ...cert, { t: "-----END CERTIFICATE-----", c: "t-dim" }], { section: "about" }),
@@ -299,7 +300,8 @@
     ["", "education, skills, achievements, contact"],
     ["sections", "map of the whole site"],
     ["goto <section>", "close the terminal and jump there on the page"],
-    ["open <name>", "open a project, github, linkedin, resume or email"],
+    ["open <name>", "open a project, github, linkedin or resume"],
+    ["message", "jump to the contact form and write to me"],
     ["cat resume", "read my full resume right here"],
     ["cd resume", "browse it by section: summary, skills, experience..."],
     ["download resume", "save my resume as a PDF (wget / curl -O work too)"],
@@ -363,15 +365,15 @@
     },
     open(args) {
       const what = (args[0] || "").toLowerCase().replace(/\.md$/, "");
-      if (!what) return print("usage: open <project|github|linkedin|resume|email>", "t-warn");
+      if (!what) return print("usage: open <project|github|linkedin|resume>", "t-warn");
+      if (what === "email" || what === "mail") return commands.message();
       const quick = {
         github: document.querySelector('#contact a[href*="github.com"]'),
         linkedin: document.querySelector('#contact a[href*="linkedin.com"]'),
         resume: document.querySelector('#contact a[href$="resume.pdf"]'),
-        email: document.querySelector('#contact a[href^="mailto:"]'),
       };
       if (quick[what]) {
-        window.open(quick[what].href, what === "email" ? "_self" : "_blank", "noopener");
+        window.open(quick[what].href, "_blank", "noopener");
         return print(`opening ${what}…`, "t-ok");
       }
       const proj = FS.children.projects.children[`${slug(what)}.md`] ||
@@ -449,6 +451,7 @@
         commands.cat(["~/contact.txt"]);
         print("");
         print("ishaan is open to Summer 2027 internships: SWE, cloud, or security.", "t-ok");
+        print("type 'message' to send him a note.", "t-dim");
         return;
       }
       print("guest is not in the sudoers file. This incident will be reported.", "t-err");
@@ -483,6 +486,16 @@
         setTimeout(() => { print(logLine(l)); scrollDown(); if (i === 7) { print("^C", "t-dim"); scrollDown(); } }, reduceMotion ? 0 : (i + 1) * 450)
       );
     },
+    message() {
+      const form = document.getElementById("contact-form");
+      if (!form) return print("message: the contact form isn't on this page", "t-err");
+      print("opening the contact form…", "t-ok");
+      setTimeout(() => {
+        collapse(false);
+        form.scrollIntoView(); // honours scroll-padding-top, so the sticky nav never covers it
+        document.getElementById("cf-name").focus({ preventScroll: true });
+      }, reduceMotion ? 0 : 250);
+    },
     fullscreen() {
       if (isFull()) collapse(false);
       else expand();
@@ -510,6 +523,7 @@
   commands.curl = commands.download;
   commands.resume = () => commands.open(["resume"]);
   commands.full = commands.fullscreen;
+  commands.mail = commands.message;
 
   // ----- Input handling -----
   const history = [];

@@ -173,3 +173,45 @@ window.addEventListener("resize", () => {
     if (reduceMotion) draw();
   }, 150);
 });
+
+// ----- Contact form (Web3Forms) -----
+const cform = document.getElementById("contact-form");
+
+if (cform) {
+  const status = cform.querySelector(".cform-status");
+  const sendBtn = cform.querySelector('button[type="submit"]');
+  const setStatus = (msg, cls = "") => {
+    status.textContent = msg;
+    status.className = `cform-status ${cls}`;
+  };
+
+  cform.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const key = cform.querySelector('[name="access_key"]').value;
+    if (!key || key.startsWith("YOUR_")) {
+      return setStatus("form isn't connected yet. reach me on linkedin for now.", "err");
+    }
+    sendBtn.disabled = true;
+    sendBtn.textContent = "sending…";
+    setStatus("");
+    try {
+      const res = await fetch(cform.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(cform),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        cform.reset();
+        setStatus("✓ sent. thanks, I'll get back to you soon.", "ok");
+      } else {
+        setStatus(`couldn't send: ${data.message || "please try again"}.`, "err");
+      }
+    } catch {
+      setStatus("couldn't reach the server. check your connection and try again.", "err");
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = "send message →";
+    }
+  });
+}

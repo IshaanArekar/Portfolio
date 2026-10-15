@@ -55,7 +55,7 @@
   <!-- fonts load without blocking the first paint -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
-  <link rel="stylesheet" href="style.css?v=20261015c" />
+  <link rel="stylesheet" href="style.css?v=20261015e" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -502,16 +502,38 @@
     <section id="contact" class="section contact fade" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="section-head"><span class="idx">07</span><h2 id="contact-title" data-scramble>Contact</h2></div>
-        <p class="big">Building something, or securing it? Let's talk.</p>
-        <p>I'm looking for Summer 2027 internships in software engineering, cloud, or security. My inbox is open.</p>
-        <div class="contact-actions">
-          <a class="btn" href="mailto:ishaanarekar25@gmail.com">ishaanarekar25@gmail.com</a>
-          <a class="btn btn-solid" href="resume.pdf" download="Ishaan-Arekar-Resume.pdf">download resume ↓</a>
-        </div>
-        <div class="contact-links">
-          <a class="link" href="https://github.com/IshaanArekar" target="_blank" rel="noopener">github ↗</a>
-          <a class="link" href="https://www.linkedin.com/in/ishaan-arekar" target="_blank" rel="noopener">linkedin ↗</a>
-          <a class="link" href="resume.pdf" target="_blank" rel="noopener">view resume ↗</a>
+        <div class="contact-grid">
+          <div>
+            <p class="big">Building something, or securing it? Let's talk.</p>
+            <p>I'm looking for Summer 2027 internships in software engineering, cloud, or security. Send me a message and I'll get back to you.</p>
+            <div class="contact-actions">
+              <a class="btn btn-solid" href="resume.pdf" download="Ishaan-Arekar-Resume.pdf">download resume ↓</a>
+            </div>
+            <div class="contact-links">
+              <a class="link" href="https://github.com/IshaanArekar" target="_blank" rel="noopener">github ↗</a>
+              <a class="link" href="https://www.linkedin.com/in/ishaan-arekar" target="_blank" rel="noopener">linkedin ↗</a>
+              <a class="link" href="resume.pdf" target="_blank" rel="noopener">view resume ↗</a>
+            </div>
+          </div>
+
+          <!-- contact form: messages are delivered by Web3Forms, so no email address is shown on the page -->
+          <form id="contact-form" class="cform" action="https://api.web3forms.com/submit" method="POST">
+            <div class="cform-bar"><span>message.sh</span><span>encrypted in transit · tls</span></div>
+            <!-- TODO: paste your Web3Forms access key here (web3forms.com → enter your email → copy the key from the email). It's meant to be public. -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="New message from your portfolio" />
+            <input type="hidden" name="from_name" value="Portfolio contact form" />
+            <!-- spam trap: real people never see or tick this -->
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label for="cf-name">$ name</label>
+            <input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Ada Lovelace" />
+            <label for="cf-email">$ email</label>
+            <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="you@company.com" />
+            <label for="cf-message">$ message</label>
+            <textarea id="cf-message" name="message" required rows="5" maxlength="4000" placeholder="Hi Ishaan, ..."></textarea>
+            <button class="btn btn-solid" type="submit">send message →</button>
+            <p class="cform-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </section>
@@ -524,7 +546,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20261015c"></script>
-  <script src="terminal.js?v=20261015c"></script>
+  <script src="script.js?v=20261015e"></script>
+  <script src="terminal.js?v=20261015e"></script>
 </body>
 </html>
