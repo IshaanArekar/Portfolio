@@ -72,7 +72,7 @@ Lighthouse: 100 accessibility, 100 best practices and 100 SEO on mobile and desk
 ├── og-image.png      link preview image (LinkedIn, iMessage, Slack)
 ├── favicon.svg, favicon-32.png, apple-touch-icon.png
 ├── robots.txt, sitemap.xml
-└── CNAME             custom domain (created by GitHub when it is set in Settings → Pages)
+└── CNAME             custom domain for GitHub Pages (ishaanarekar.com)
 ```
 
 ## Run it locally
